@@ -1,8 +1,16 @@
 public class Ember {
+    // osztalyszintu
+    public static int jelenEv = 2020;
+
+    // peldanyszintuek:
     private String nev;
     private int szuletesiEv;
     private boolean nem;
     private int jovedelem;
+
+    public int eletkor () {
+        return Ember.jelenEv - this.getSzuletesiEv();
+    }
 
     public Ember() {
         this.nev = "Tudo R. Akos";
@@ -62,8 +70,9 @@ public class Ember {
         return "Ember{" +
                 "nev='" + nev + '\'' +
                 ", szuletesiEv=" + szuletesiEv +
-                ", nem=" + nem +
+                ", nem=" + (nem  ? "no" : "ferfi") +
                 ", jovedelem=" + jovedelem +
+                ", eletkor=" + this.eletkor() +
                 '}';
     }
 
