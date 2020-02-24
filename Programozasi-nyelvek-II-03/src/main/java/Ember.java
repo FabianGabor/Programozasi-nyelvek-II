@@ -89,5 +89,8 @@ public class Ember {
         Ember bela = new Ember("Vegh Bela", 1987, false, 10);
         System.out.println(bela.nev);
         System.out.println(bela);
+
+        Hallgato joco = new Hallgato( "Joco", 1987, false, 10, "FFFFFF", "eroszak", 2);
+        System.out.println(joco);
     }
 }
