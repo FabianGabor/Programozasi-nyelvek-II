@@ -1,8 +1,8 @@
 public class Ember {
-    public String nev;
-    public int szuletesiEv;
-    public boolean nem;
-    public int jovedelem;
+    private String nev;
+    private int szuletesiEv;
+    private boolean nem;
+    private int jovedelem;
 
     public Ember() {
         this.nev = "Tudo R. Akos";
@@ -25,7 +25,60 @@ public class Ember {
         this.jovedelem = 0; // nincs atadva parameterkent, de ez lesz az alapertelmezett
     }
 
-    public static void main (String[] args) {
+    public String getNev() {
+        return nev;
+    }
 
+    public void setNev(String nev) {
+        this.nev = nev.toUpperCase();
+    }
+
+    public int getSzuletesiEv() {
+        return szuletesiEv;
+    }
+
+    public void setSzuletesiEv(int szuletesiEv) {
+        this.szuletesiEv = szuletesiEv;
+    }
+
+    public boolean isNem() {
+        return nem;
+    }
+
+    public void setNem(boolean nem) {
+        this.nem = nem;
+    }
+
+    public int getJovedelem() {
+        return jovedelem;
+    }
+
+    public void setJovedelem(int jovedelem) {
+        this.jovedelem = jovedelem;
+    }
+
+    @Override
+    public String toString() {
+        return "Ember{" +
+                "nev='" + nev + '\'' +
+                ", szuletesiEv=" + szuletesiEv +
+                ", nem=" + nem +
+                ", jovedelem=" + jovedelem +
+                '}';
+    }
+
+    public static void main (String[] args) {
+        Ember akos = new Ember();
+        System.out.println(akos.nev + '\n' + akos.szuletesiEv);
+
+        akos.nev = "Vegh Bela";
+        System.out.println(akos.nev + '\n' + akos.szuletesiEv);
+
+        akos.setNev("Akos");
+        System.out.println(akos.getNev());
+
+        Ember bela = new Ember("Vegh Bela", 1987, false, 10);
+        System.out.println(bela.nev);
+        System.out.println(bela);
     }
 }
