@@ -65,6 +65,7 @@ public class Ember {
         this.jovedelem = jovedelem;
     }
 
+    /*
     @Override
     public String toString() {
         return "Ember{" +
@@ -75,8 +76,10 @@ public class Ember {
                 ", eletkor=" + this.eletkor() +
                 '}';
     }
+     */
 
     public static void main (String[] args) {
+        /*
         Ember akos = new Ember();
         System.out.println(akos.nev + '\n' + akos.szuletesiEv);
 
@@ -92,5 +95,17 @@ public class Ember {
 
         Hallgato joco = new Hallgato( "Joco", 1987, false, 10, "FFFFFF", "eroszak", 2);
         System.out.println(joco);
+         */
+
+        Hallgato[] hallgatok = new Hallgato[1];
+
+        hallgatok[0] = new Hallgato("Gabor", 1987, false, 0, "CXNU8T", "Programtervezo informatikus", 2019 );
+
+        //hallgatok[1] = new Hallgato();
+        //hallgatok[1].setNev("Gabor");
+
+        for (int i = 0; i < hallgatok.length; i++)
+            System.out.println(i + ". "  +
+                    hallgatok[i].getNev());
     }
 }

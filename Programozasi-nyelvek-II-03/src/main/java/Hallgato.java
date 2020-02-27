@@ -1,4 +1,4 @@
-public class Hallgato  extends Ember {
+public class Hallgato extends Ember {
     private String neptunKod;
     private String szak;
     private int evfolyam;
@@ -34,6 +34,7 @@ public class Hallgato  extends Ember {
         this.evfolyam = evfolyam;
     }
 
+    /*
     @Override
     public String toString() {
         return super.toString() + " " + "Hallgato{" +
@@ -42,4 +43,6 @@ public class Hallgato  extends Ember {
                 ", evfolyam=" + evfolyam +
                 '}';
     }
+
+     */
 }
