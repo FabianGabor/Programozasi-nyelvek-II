@@ -99,13 +99,23 @@ public class Ember {
 
         Hallgato[] hallgatok = new Hallgato[1];
 
-        hallgatok[0] = new Hallgato("Gabor", 1987, false, 0, "CXNU8T", "Programtervezo informatikus", 2019 );
-
-        //hallgatok[1] = new Hallgato();
-        //hallgatok[1].setNev("Gabor");
+        hallgatok[0] = new Hallgato("Fabian Gabor", 1987, false, 0, "CXNU8T", "Programtervezo informatikus", 2019 );
 
         for (int i = 0; i < hallgatok.length; i++)
             System.out.println(i + ". "  +
-                    hallgatok[i].getNev());
+                    hallgatok[i].getNev() + " " +
+                    hallgatok[i].getNeptunKod() + " " +
+                    hallgatok[i].getSzak()
+            );
+
+
+        //hallgatok[0].tantargyak[hallgatok[0].getTargyakSzama()] = new Tantargy().targyfelvetel("Programozasi nyelvek II");
+        //hallgatok[0].tantargyak[0] = new Hallgato("Gabor", 1987, false, 0, "CXNU8T", "Programtervezo informatikus", 2019).targyfelvetel("Teszt");
+        //hallgatok[0].tantargyak[hallgatok[0].getTargyakSzama()].targyfelvetel("Programozasi nyelvek II");
+        hallgatok[0].targyfelvetel("Programozasi nyelvek II");
+
+
+
+
     }
 }
