@@ -50,11 +50,9 @@ public class Hallgato extends Ember {
     }
 
     public boolean targyFelvetel(Targyak targyak){
-        /*
         if (targyak==null || targyakLista.contains(targyak)) {
             return false;
         }
-         */
         targyakLista.add(targyak);
         return true;
     }
@@ -97,13 +95,13 @@ public class Hallgato extends Ember {
         ArrayList<Hallgato> h = new ArrayList<Hallgato>();
 
         h.add(new Hallgato("Fabian Gabor", 1987, "CXNU8T", "Programtervezo informatikus", 2019));
-        h.add(new Hallgato("Teszt Teszter", 1987, "0xDEADCODE", "Programtervezo informatikus", 2019));
+        h.add(new Hallgato("Teszt Teszter", 1024, "0xDEADCODE", "Programtervezo informatikus", 2048));
 
         h.get(0).setTargyakLista();
         h.get(0).targyFelvetel(new Targyak("Teszt targy", "Teszt Oktato"));
 
-        //h.get(1).setTargyakLista();
-        //h.get(1).targyFelvetel(new Targyak("Teszt targy", "Oktato"));
+        h.get(1).setTargyakLista();
+        h.get(1).targyFelvetel(new Targyak("Teszt targy", "Oktato"));
 
         for(Hallgato hallgato : h) {
             System.out.println(hallgato.getNev() + " " + hallgato.getSzuletesiEv() + " " + hallgato.getNeptunKod() + " " + hallgato.getSzak() );
