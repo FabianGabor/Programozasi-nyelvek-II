@@ -1,13 +1,15 @@
 import com.sun.scenario.effect.impl.sw.java.JSWBlend_SRC_OUTPeer;
 import org.w3c.dom.ls.LSOutput;
+import java.util.ArrayList;
 
 public class Hallgato extends Ember {
     private String neptunKod;
     private String szak;
     private int evfolyam;
     private int targyakSzama;
-    private String tantargyNev;
-    private Tantargy[] tantargyak = new Tantargy[10];
+    //private String tantargyNev;
+    //private Tantargy[] tantargyak = new Tantargy[10];
+    private ArrayList<Tantargy> tantargyArrayList;
 
     public Hallgato(String nev, int szuletesiEv, boolean nem, int jovedelem, String neptunKod, String szak, int evfolyam) {
         super(nev, szuletesiEv, nem, jovedelem);
@@ -17,10 +19,9 @@ public class Hallgato extends Ember {
         this.targyakSzama = targyakSzama;
     }
 
-    public Hallgato(int targyakSzama, Tantargy[] tantargyak, String tantargyNev) {
+    public Hallgato(int targyakSzama, ArrayList<Tantargy> tantargyArrayList) {
         this.targyakSzama = targyakSzama;
-        this.tantargyak = new Tantargy[10];
-        this.tantargyNev = tantargyNev;
+        this.tantargyArrayList = tantargyArrayList;
     }
 
     public String getNeptunKod() {
@@ -55,20 +56,13 @@ public class Hallgato extends Ember {
         this.targyakSzama = targyakSzama;
     }
 
-    public String getTantargyNev() {
-        return tantargyNev;
+    public ArrayList<Tantargy> getTantargyArrayList() {
+        return tantargyArrayList;
     }
 
-    public void setTantargyNev(String tantargyNev) {
-        this.tantargyNev = tantargyNev;
-    }
-
-    public Tantargy[] getTantargyak() {
-        return tantargyak;
-    }
-
-    public void setTantargyak(Tantargy[] tantargyak) {
-        this.tantargyak = tantargyak;
+    public void setTantargyArrayList(ArrayList<Tantargy> tantargyArrayList) {
+        this.tantargyArrayList = tantargyArrayList;
+        //this.tantargyArrayList = new ArrayList<Tantargy>();
     }
 
     /*

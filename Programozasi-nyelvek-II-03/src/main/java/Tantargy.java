@@ -21,6 +21,10 @@ public class Tantargy {
         this.jegy = jegy;
     }
 
+    public Tantargy(String tantargyNev) {
+        this.tantargyNev = tantargyNev;
+    }
+
     public String getKod() {
         return kod;
     }
@@ -62,16 +66,16 @@ public class Tantargy {
     }
 
     /*
-    @Override
-    public String toString() {
-        return super.toString() + " " + "Tantargy{" +
-                "tantargyNev='" + tantargyNev + '\'' +
-                ", kod='" + kod + '\'' +
-                ", oktato=" + oktato +
-                '}';
-    }
+        @Override
+        public String toString() {
+            return super.toString() + " " + "Tantargy{" +
+                    "tantargyNev='" + tantargyNev + '\'' +
+                    ", kod='" + kod + '\'' +
+                    ", oktato=" + oktato +
+                    '}';
+        }
 
-     */
+         */
     public void targyfelvetel (String tantargyNev) {
         this.setTantargyNev(tantargyNev);
     }

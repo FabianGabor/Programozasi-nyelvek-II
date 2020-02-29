@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Ember {
     // osztalyszintu
     public static int jelenEv = 2020;
@@ -97,16 +99,10 @@ public class Ember {
         System.out.println(joco);
          */
 
-        Hallgato[] hallgatok = new Hallgato[1];
+        Hallgato[] hallgatok = new Hallgato[2];
 
         hallgatok[0] = new Hallgato("Fabian Gabor", 1987, false, 0, "CXNU8T", "Programtervezo informatikus", 2019 );
-
-        hallgatok[0].setTargyakSzama(1);
-
-        Tantargy[] tantargyak;
-        tantargyak = new Tantargy[hallgatok[0].getTargyakSzama()];
-        //tantargyak[0].targyfelvetel("teszt");
-        tantargyak[0].setTantargyNev("Teszt");
+        hallgatok[1] = new Hallgato("Teszt", 1987, false, 0, "0XDEADC0DE", "Programtervezo informatikus", 2019 );
 
 
         for (int i = 0; i < hallgatok.length; i++) {
@@ -115,18 +111,8 @@ public class Ember {
                     hallgatok[i].getNeptunKod() + " " +
                     hallgatok[i].getSzak()
             );
-            for (int j=0; i<hallgatok[i].getTargyakSzama(); j++) {
-                System.out.println(hallgatok[i].getTantargyak());
-            }
         }
 
-
-        //hallgatok[0].tantargyak[0].targyfelvetel("Teszt");
-        //hallgatok[0].setTantargyak();
-
-
-
-
-
+        hallgatok[0].setTantargyArrayList({"test"});
     }
 }
