@@ -72,6 +72,13 @@ public class Tantargy {
     }
 
      */
+    public void targyfelvetel (String tantargyNev) {
+        this.setTantargyNev(tantargyNev);
+    }
+
+    public void targyleadas () {
+
+    }
 
 
 

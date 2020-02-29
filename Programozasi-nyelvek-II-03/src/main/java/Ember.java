@@ -101,18 +101,29 @@ public class Ember {
 
         hallgatok[0] = new Hallgato("Fabian Gabor", 1987, false, 0, "CXNU8T", "Programtervezo informatikus", 2019 );
 
-        for (int i = 0; i < hallgatok.length; i++)
-            System.out.println(i + ". "  +
+        hallgatok[0].setTargyakSzama(1);
+
+        Tantargy[] tantargyak;
+        tantargyak = new Tantargy[hallgatok[0].getTargyakSzama()];
+        //tantargyak[0].targyfelvetel("teszt");
+        tantargyak[0].setTantargyNev("Teszt");
+
+
+        for (int i = 0; i < hallgatok.length; i++) {
+            System.out.println(i + ". " +
                     hallgatok[i].getNev() + " " +
                     hallgatok[i].getNeptunKod() + " " +
                     hallgatok[i].getSzak()
             );
+            for (int j=0; i<hallgatok[i].getTargyakSzama(); j++) {
+                System.out.println(hallgatok[i].getTantargyak());
+            }
+        }
 
 
-        //hallgatok[0].tantargyak[hallgatok[0].getTargyakSzama()] = new Tantargy().targyfelvetel("Programozasi nyelvek II");
-        //hallgatok[0].tantargyak[0] = new Hallgato("Gabor", 1987, false, 0, "CXNU8T", "Programtervezo informatikus", 2019).targyfelvetel("Teszt");
-        //hallgatok[0].tantargyak[hallgatok[0].getTargyakSzama()].targyfelvetel("Programozasi nyelvek II");
-        hallgatok[0].targyfelvetel("Programozasi nyelvek II");
+        //hallgatok[0].tantargyak[0].targyfelvetel("Teszt");
+        //hallgatok[0].setTantargyak();
+
 
 
 

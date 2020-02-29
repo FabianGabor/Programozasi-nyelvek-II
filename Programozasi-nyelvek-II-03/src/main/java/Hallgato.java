@@ -6,8 +6,8 @@ public class Hallgato extends Ember {
     private String szak;
     private int evfolyam;
     private int targyakSzama;
-    private int tantargyNev;
-    Tantargy tantargyak[] = new Tantargy[10];
+    private String tantargyNev;
+    private Tantargy[] tantargyak = new Tantargy[10];
 
     public Hallgato(String nev, int szuletesiEv, boolean nem, int jovedelem, String neptunKod, String szak, int evfolyam) {
         super(nev, szuletesiEv, nem, jovedelem);
@@ -15,6 +15,12 @@ public class Hallgato extends Ember {
         this.szak = szak;
         this.evfolyam = evfolyam;
         this.targyakSzama = targyakSzama;
+    }
+
+    public Hallgato(int targyakSzama, Tantargy[] tantargyak, String tantargyNev) {
+        this.targyakSzama = targyakSzama;
+        this.tantargyak = new Tantargy[10];
+        this.tantargyNev = tantargyNev;
     }
 
     public String getNeptunKod() {
@@ -49,6 +55,22 @@ public class Hallgato extends Ember {
         this.targyakSzama = targyakSzama;
     }
 
+    public String getTantargyNev() {
+        return tantargyNev;
+    }
+
+    public void setTantargyNev(String tantargyNev) {
+        this.tantargyNev = tantargyNev;
+    }
+
+    public Tantargy[] getTantargyak() {
+        return tantargyak;
+    }
+
+    public void setTantargyak(Tantargy[] tantargyak) {
+        this.tantargyak = tantargyak;
+    }
+
     /*
     @Override
     public String toString() {
@@ -59,14 +81,4 @@ public class Hallgato extends Ember {
                 '}';
     }
      */
-
-    public void targyfelvetel (String tantargyNev) {
-        //this.tantargyNev(tantargyNev);
-        tantargyak[0].setTantargyNev(tantargyNev);
-    }
-
-    public void targyleadas () {
-
-    }
-
 }
