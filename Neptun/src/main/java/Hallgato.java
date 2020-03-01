@@ -57,6 +57,28 @@ public class Hallgato extends Ember {
         return true;
     }
 
+    public boolean targyLeadasIndex(int index) {
+        targyakLista.remove(index);
+        return true;
+    }
+
+    public boolean targyLeadasNev(String nev) {
+        targyakLista.remove(nev);
+        return true;
+    }
+
+    public static void printHallgato(ArrayList<Hallgato> h) {
+        for(Hallgato hallgato : h) {
+            System.out.println(hallgato.getNev() + " " + hallgato.getSzuletesiEv() + " " + hallgato.getNeptunKod() + " " + hallgato.getSzak() );
+
+            if (hallgato.getTargyakLista() != null)
+                for (Targyak targy : hallgato.getTargyakLista())
+                    System.out.println(targy.getNev() + " " + targy.getOktato());
+            System.out.println();
+        }
+    }
+
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -66,6 +88,7 @@ public class Hallgato extends Ember {
 
     public static void main (String[] args) {
 
+        /*
         System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "Array Hallgato x ArrayList<Targyak>" + ANSI_RESET);
 
         Hallgato[] hallgatok = new Hallgato[5];
@@ -80,6 +103,7 @@ public class Hallgato extends Ember {
         hallgatok[1].targyakLista.add(0, new Targyak("Valami targy", "Teszt oktato"));
         hallgatok[1].targyFelvetel(new Targyak("Valami masik targy", "Teszt oktato"));
 
+
         for (int i=0; i<2; i++)
         {
             System.out.println(hallgatok[i].getNev());
@@ -87,6 +111,7 @@ public class Hallgato extends Ember {
                 System.out.println(targy.getNev() + " " + targy.getOktato());
             System.out.println();
         }
+         */
         /*
          */
 
@@ -98,18 +123,25 @@ public class Hallgato extends Ember {
         h.add(new Hallgato("Teszt Teszter", 1024, "0xDEADCODE", "Programtervezo informatikus", 2048));
 
         h.get(0).setTargyakLista();
-        h.get(0).targyFelvetel(new Targyak("Teszt targy", "Teszt Oktato"));
+        h.get(0).targyFelvetel(new Targyak("Teszt targy 1", "Teszt Oktato"));
+        h.get(0).targyFelvetel(new Targyak("Teszt targy 2", "Teszt Oktato"));
+        h.get(0).targyFelvetel(new Targyak("Teszt targy 3", "Teszt Oktato"));
 
         h.get(1).setTargyakLista();
-        h.get(1).targyFelvetel(new Targyak("Teszt targy", "Oktato"));
+        h.get(1).targyFelvetel(new Targyak("Teszt targy 1", "Oktato"));
+        h.get(1).targyFelvetel(new Targyak("Teszt targy 2", "Oktato"));
+        h.get(1).targyFelvetel(new Targyak("Teszt targy 3", "Oktato"));
 
-        for(Hallgato hallgato : h) {
-            System.out.println(hallgato.getNev() + " " + hallgato.getSzuletesiEv() + " " + hallgato.getNeptunKod() + " " + hallgato.getSzak() );
+        //Hallgato.printHallgato(h);
 
-            if (hallgato.getTargyakLista() != null)
-                for (Targyak targy : hallgato.getTargyakLista())
-                    System.out.println(targy.getNev() + " " + targy.getOktato());
-            System.out.println();
+        String leadandoTargyNeve = "Teszt targy 1";
+        for (Hallgato hallgato : h) {
+            //hallgato.targyLeadasIndex(0);
+            for (int i=0; i<hallgato.targyakLista.size(); i++)
+                if (hallgato.targyakLista.get(i).getNev() == leadandoTargyNeve)
+                    hallgato.targyLeadasIndex(i);
         }
+
+        Hallgato.printHallgato(h);
     }
 }
