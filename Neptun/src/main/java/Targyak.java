@@ -32,11 +32,39 @@ public class Targyak {
         this.oktato = oktato;
     }
 
+    public void setHallgatoLista() {
+        this.hallgatoLista = new ArrayList<Hallgato>();
+    }
+
     public ArrayList<Hallgato> getHallgatoLista() {
         return hallgatoLista;
     }
 
     public void setHallgatoLista(ArrayList<Hallgato> hallgatoLista) {
         this.hallgatoLista = hallgatoLista;
+    }
+
+    public boolean hallgatoFelvetel(Hallgato hallgato){
+        if (hallgato==null || hallgatoLista.contains(hallgato)) {
+            return false;
+        }
+        hallgatoLista.add(hallgato);
+        return true;
+    }
+
+    public static void printTargyak(ArrayList<Targyak> t) {
+        for(Targyak targyak : t) {
+            System.out.println(targyak.getNev() + " " + targyak.getOktato() );
+
+            if (targyak.getHallgatoLista() != null) {
+                for (Hallgato hallgato : targyak.getHallgatoLista())
+                    System.out.println(hallgato.getNev() + " " + hallgato.getNeptunKod());
+            }
+            else {
+                System.out.println("Nincsenek hallgatok");
+            }
+
+            System.out.println();
+        }
     }
 }

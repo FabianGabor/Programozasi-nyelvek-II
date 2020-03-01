@@ -67,7 +67,7 @@ public class Hallgato extends Ember {
         return true;
     }
 
-    public static void printHallgato(ArrayList<Hallgato> h) {
+    public static void printHallgatok(ArrayList<Hallgato> h) {
         for(Hallgato hallgato : h) {
             System.out.println(hallgato.getNev() + " " + hallgato.getSzuletesiEv() + " " + hallgato.getNeptunKod() + " " + hallgato.getSzak() );
 
@@ -118,22 +118,53 @@ public class Hallgato extends Ember {
         System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "ArrayList<Hallgato> x ArrayList<Targyak>" + ANSI_RESET);
 
         ArrayList<Hallgato> h = new ArrayList<Hallgato>();
+        ArrayList<Targyak> t = new ArrayList<Targyak>();
 
+        // Hallgatok letrehozasa
         h.add(new Hallgato("Fabian Gabor", 1987, "CXNU8T", "Programtervezo informatikus", 2019));
         h.add(new Hallgato("Teszt Teszter", 1024, "0xDEADCODE", "Programtervezo informatikus", 2048));
 
+        // Targyak letrehozasa
+        t.add(new Targyak("Teszt targy 1", "Teszt Oktato"));
+        t.add(new Targyak("Teszt targy 2", "Teszt Oktato"));
+        t.add(new Targyak("Teszt targy 3", "Teszt Oktato"));
+
         h.get(0).setTargyakLista();
+        /*
         h.get(0).targyFelvetel(new Targyak("Teszt targy 1", "Teszt Oktato"));
         h.get(0).targyFelvetel(new Targyak("Teszt targy 2", "Teszt Oktato"));
         h.get(0).targyFelvetel(new Targyak("Teszt targy 3", "Teszt Oktato"));
+         */
+        h.get(0).targyFelvetel(t.get(0));
+        h.get(0).targyFelvetel(t.get(1));
+        h.get(0).targyFelvetel(t.get(2));
+
 
         h.get(1).setTargyakLista();
+        /*
         h.get(1).targyFelvetel(new Targyak("Teszt targy 1", "Oktato"));
         h.get(1).targyFelvetel(new Targyak("Teszt targy 2", "Oktato"));
         h.get(1).targyFelvetel(new Targyak("Teszt targy 3", "Oktato"));
+         */
+        h.get(1).targyFelvetel(t.get(0));
+        h.get(1).targyFelvetel(t.get(1));
+        h.get(1).targyFelvetel(t.get(2));
 
-        //Hallgato.printHallgato(h);
+        Hallgato.printHallgatok(h);
 
+
+        // Hallgatok hozzaadasa a targyakhoz
+        t.get(0).setHallgatoLista();
+        //t.get(0).hallgatoFelvetel(new Hallgato("Fabian Gabor", 1987, "CXNU8T", "Programtervezo informatikus", 2019));
+        //t.get(0).hallgatoFelvetel(new Hallgato("Teszt Teszter", 1024, "0xDEADCODE", "Programtervezo informatikus", 2048));
+        t.get(0).hallgatoFelvetel(h.get(0));
+
+        t.get(1).setHallgatoLista();
+        t.get(1).hallgatoFelvetel(h.get(0));
+        t.get(1).hallgatoFelvetel(h.get(1));
+
+
+        // Targyleadas
         String leadandoTargyNeve = "Teszt targy 1";
         for (Hallgato hallgato : h) {
             //hallgato.targyLeadasIndex(0);
@@ -142,6 +173,10 @@ public class Hallgato extends Ember {
                     hallgato.targyLeadasIndex(i);
         }
 
-        Hallgato.printHallgato(h);
+        System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "Leadott targy neve: " + leadandoTargyNeve + ANSI_RESET);
+        Hallgato.printHallgatok(h);
+
+        System.out.println("Targyak hallgatoi:");
+        Targyak.printTargyak(t);
     }
 }
