@@ -236,5 +236,12 @@ public class Hallgato extends Ember {
 
         System.out.println("Targyak hallgatoi:");
         Targyak.printTargyak(t);
+
+        int tomb[] = new int[10];
+        for (int i=0; i<10; i++)
+            tomb[i] = (int)(Math.random()* 21) + 20;
+
+        for (int i=0; i<11; i++)
+            System.out.println(tomb[i]);
     }
 }
