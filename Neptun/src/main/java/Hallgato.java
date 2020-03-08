@@ -199,6 +199,7 @@ public class Hallgato extends Ember {
 
         h.get(0).setTargyakLista();
 
+
         /*
         h.get(0).targyFelvetel(new Targyak("Teszt targy 1", "Teszt Oktato"));
         h.get(0).targyFelvetel(new Targyak("Teszt targy 2", "Teszt Oktato"));
@@ -207,7 +208,6 @@ public class Hallgato extends Ember {
         h.get(0).targyFelvetel(t.get(0));
         h.get(0).targyFelvetel(t.get(1));
         h.get(0).targyFelvetel(t.get(2));
-
 
         h.get(1).setTargyakLista();
         /*
@@ -256,9 +256,11 @@ public class Hallgato extends Ember {
         System.out.println("\nOsztalyozas:");
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
-                o.osztalyoz(h.get(i), h.get(i).targyakLista.get(j), i + j);
+                //o.osztalyoz(h.get(i), h.get(i).targyakLista.get(j), i + j);
             }
         }
+        o.osztalyoz(h.get(0), h.get(0).targyakLista.get(0), 5);
+        h.get(1).getTargyakLista().get(1).setJegy(42);
 
         Hallgato.printHallgatok(h);
     }

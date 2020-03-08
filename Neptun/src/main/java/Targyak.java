@@ -6,7 +6,7 @@ public class Targyak {
     private String oktato;
     private String kod;
     private ArrayList<Hallgato> hallgatoLista;
-    private int jegy = 0;
+    private int jegy;
 
     public Targyak(String nev, String oktato) {
         this.nev = nev;
