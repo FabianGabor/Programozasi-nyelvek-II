@@ -14,7 +14,7 @@ public class Hallgato extends Ember {
         this.szak = szak;
         this.evfolyam = evfolyam;
         this.targyakLista = targyakLista;
-        this.targyakTomb = targyakTomb;
+        //this.targyakTomb = targyakTomb;
     }
 
     public Hallgato(String nev, int szuletesiEv, String neptunKod, String szak, int evfolyam) {
@@ -60,6 +60,7 @@ public class Hallgato extends Ember {
         this.targyakLista = targyakLista;
     }
 
+    /*
     public Targyak[] getTargyakTomb() {
         return targyakTomb;
     }
@@ -67,6 +68,7 @@ public class Hallgato extends Ember {
     public void setTargyakTomb(Targyak[] targyakTomb) {
         this.targyakTomb = targyakTomb;
     }
+     */
 
     public int getTargyakSzama() {
         return targyakSzama;
@@ -76,11 +78,14 @@ public class Hallgato extends Ember {
         this.targyakSzama = targyakSzama;
     }
 
-    public boolean targyFelvetel(Targyak targyak){
-        if (targyak==null || targyakLista.contains(targyak)) {
+    public boolean targyFelvetel(Targyak targy){
+        /*
+        if (targy==null || targyakLista.contains(targy)) {
             return false;
         }
-        targyakLista.add(targyak);
+         */
+        targyakLista.add(targy);
+        targyakSzama++;
         return true;
     }
 
@@ -94,6 +99,7 @@ public class Hallgato extends Ember {
         return true;
     }
 
+    /*
     public boolean tantargyFelvetel (Targyak t) {
         if (t==null) return false;
         if (this.getTargyakTomb().length==targyakSzama) return false;
@@ -105,6 +111,7 @@ public class Hallgato extends Ember {
         targyakSzama++;
         return true;
     }
+     */
 
     public boolean tantargyLeadas (Targyak t) {
         if (t == null) return false;
@@ -127,11 +134,11 @@ public class Hallgato extends Ember {
 
     public static void printHallgatok(ArrayList<Hallgato> h) {
         for(Hallgato hallgato : h) {
-            System.out.println(hallgato.getNev() + " " + hallgato.getSzuletesiEv() + " " + hallgato.getNeptunKod() + " " + hallgato.getSzak() );
+            System.out.println(hallgato.getNev() + " - " + hallgato.getSzuletesiEv() + " - " + hallgato.getNeptunKod() + " " + hallgato.getSzak() );
 
             if (hallgato.getTargyakLista() != null)
                 for (Targyak targy : hallgato.getTargyakLista())
-                    System.out.println(targy.getNev() + " " + targy.getOktato());
+                    System.out.println(targy.getNev() + " - " + targy.getOktato() + " - " + targy.getJegy());
             System.out.println();
         }
     }
@@ -177,17 +184,19 @@ public class Hallgato extends Ember {
 
         ArrayList<Hallgato> h = new ArrayList<Hallgato>();
         ArrayList<Targyak> t = new ArrayList<Targyak>();
+        Oktato o = new Oktato("Oktato 1", 1951, "MS0331");
 
         // Hallgatok letrehozasa
         h.add(new Hallgato("Fabian Gabor", 1987, "CXNU8T", "Programtervezo informatikus", 2019));
         h.add(new Hallgato("Teszt Teszter", 1024, "0xDEADCODE", "Programtervezo informatikus", 2048));
 
         // Targyak letrehozasa
-        t.add(new Targyak("Teszt targy 1", "Teszt Oktato"));
-        t.add(new Targyak("Teszt targy 2", "Teszt Oktato"));
-        t.add(new Targyak("Teszt targy 3", "Teszt Oktato"));
+        t.add(new Targyak("Teszt targy 1", "Teszt Oktato 1", "ABC123"));
+        t.add(new Targyak("Teszt targy 2", "Teszt Oktato 2", "ASD321"));
+        t.add(new Targyak("Teszt targy 3", "Teszt Oktato 3", "QWE456"));
 
         h.get(0).setTargyakLista();
+
         /*
         h.get(0).targyFelvetel(new Targyak("Teszt targy 1", "Teszt Oktato"));
         h.get(0).targyFelvetel(new Targyak("Teszt targy 2", "Teszt Oktato"));
@@ -222,6 +231,7 @@ public class Hallgato extends Ember {
         t.get(1).hallgatoFelvetel(h.get(1));
 
 
+        /*
         // Targyleadas
         String leadandoTargyNeve = "Teszt targy 1";
         for (Hallgato hallgato : h) {
@@ -230,11 +240,25 @@ public class Hallgato extends Ember {
                 if (hallgato.targyakLista.get(i).getNev() == leadandoTargyNeve)
                     hallgato.targyLeadasIndex(i);
         }
-
         System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "Leadott targy neve: " + leadandoTargyNeve + ANSI_RESET);
         Hallgato.printHallgatok(h);
 
+         */
+
+        /*
         System.out.println("Targyak hallgatoi:");
         Targyak.printTargyak(t);
+
+         */
+
+        System.out.println("\nOsztalyozas:");
+        o.osztalyoz(h.get(0), h.get(0).targyakLista.get(0), 3);
+        o.osztalyoz(h.get(0), h.get(0).targyakLista.get(1), 5);
+
+        o.osztalyoz(h.get(1), h.get(1).targyakLista.get(0), 2);
+        o.osztalyoz(h.get(1), h.get(1).targyakLista.get(1), 1);
+
+        Hallgato.printHallgatok(h);
+
     }
 }

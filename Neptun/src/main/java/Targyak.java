@@ -6,10 +6,17 @@ public class Targyak {
     private String oktato;
     private String kod;
     private ArrayList<Hallgato> hallgatoLista;
+    private int jegy = 0;
 
     public Targyak(String nev, String oktato) {
         this.nev = nev;
         this.oktato = oktato;
+    }
+
+    public Targyak(String nev, String oktato, String kod) {
+        this.nev = nev;
+        this.oktato = oktato;
+        this.kod = kod;
     }
 
     public Targyak(String nev, String oktato, ArrayList<Hallgato> hallgatoLista) {
@@ -52,6 +59,14 @@ public class Targyak {
 
     public void setHallgatoLista(ArrayList<Hallgato> hallgatoLista) {
         this.hallgatoLista = hallgatoLista;
+    }
+
+    public int getJegy() {
+        return jegy;
+    }
+
+    public void setJegy(int jegy) {
+        this.jegy = jegy;
     }
 
     public boolean hallgatoFelvetel(Hallgato hallgato){
