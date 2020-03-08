@@ -1,11 +1,9 @@
 public class Oktato extends Ember {
     private String neptunKod;
-    Hallgato hallgatok[] = new Hallgato[10];
 
-    public Oktato(String nev, int szuletesiEv, String neptunKod, Hallgato[] hallgatok) {
+    public Oktato(String nev, int szuletesiEv, String neptunKod, Hallgato hallgato) {
         super(nev, szuletesiEv);
         this.neptunKod = neptunKod;
-        this.hallgatok = hallgatok;
     }
 
     public String getNeptunKod() {
@@ -16,11 +14,7 @@ public class Oktato extends Ember {
         this.neptunKod = neptunKod;
     }
 
-    public Hallgato[] getHallgatok() {
-        return hallgatok;
-    }
+    public void osztalyoz (Hallgato hallgato, Targyak targyak, int jegy) {
 
-    public void setHallgatok(Hallgato[] hallgatok) {
-        this.hallgatok = hallgatok;
     }
 }
