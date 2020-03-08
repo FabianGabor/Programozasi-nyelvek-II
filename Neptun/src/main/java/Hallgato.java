@@ -173,7 +173,7 @@ public class Hallgato extends Ember {
                     hallgato.targyLeadasIndex(i);
         }
 
-        System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "Leadott targy neve: " + leadandoTargyNeve + ANSI_RESET);
+        System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK d+ "Leadott targy neve: " + leadandoTargyNeve + ANSI_RESET);
         Hallgato.printHallgatok(h);
 
         System.out.println("Targyak hallgatoi:");
