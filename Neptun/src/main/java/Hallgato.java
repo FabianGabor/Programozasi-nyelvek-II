@@ -5,7 +5,7 @@ public class Hallgato extends Ember {
     private String szak;
     private int evfolyam;
     private ArrayList<Targyak> targyakLista;
-    private Targyak[] targyakTomb;
+    //private Targyak[] targyakTomb;
     private int targyakSzama = 0;
 
     public Hallgato(String nev, int szuletesiEv, String neptunKod, String szak, int evfolyam, Targyak[] targyakTomb) {
@@ -113,6 +113,7 @@ public class Hallgato extends Ember {
     }
      */
 
+    /*
     public boolean tantargyLeadas (Targyak t) {
         if (t == null) return false;
         if (this.targyakSzama == 0) return false;
@@ -129,6 +130,7 @@ public class Hallgato extends Ember {
             }
         return false;
     }
+     */
 
 
 
@@ -252,13 +254,9 @@ public class Hallgato extends Ember {
          */
 
         System.out.println("\nOsztalyozas:");
-        o.osztalyoz(h.get(0), h.get(0).targyakLista.get(0), 3);
-        o.osztalyoz(h.get(0), h.get(0).targyakLista.get(1), 5);
-
-        o.osztalyoz(h.get(1), h.get(1).targyakLista.get(0), 2);
-        o.osztalyoz(h.get(1), h.get(1).targyakLista.get(1), 1);
+        o.osztalyoz(h.get(0), h.get(0).targyakLista.get(0), 5);
+        o.osztalyoz(h.get(1), h.get(1).targyakLista.get(1), 3);
 
         Hallgato.printHallgatok(h);
-
     }
 }
