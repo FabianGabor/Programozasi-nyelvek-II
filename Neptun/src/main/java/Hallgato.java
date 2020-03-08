@@ -5,6 +5,17 @@ public class Hallgato extends Ember {
     private String szak;
     private int evfolyam;
     private ArrayList<Targyak> targyakLista;
+    private Targyak[] targyakTomb;
+    private int targyakSzama = 0;
+
+    public Hallgato(String nev, int szuletesiEv, String neptunKod, String szak, int evfolyam, Targyak[] targyakTomb) {
+        super(nev, szuletesiEv);
+        this.neptunKod = neptunKod;
+        this.szak = szak;
+        this.evfolyam = evfolyam;
+        this.targyakLista = targyakLista;
+        this.targyakTomb = targyakTomb;
+    }
 
     public Hallgato(String nev, int szuletesiEv, String neptunKod, String szak, int evfolyam) {
         super(nev, szuletesiEv);
@@ -49,6 +60,22 @@ public class Hallgato extends Ember {
         this.targyakLista = targyakLista;
     }
 
+    public Targyak[] getTargyakTomb() {
+        return targyakTomb;
+    }
+
+    public void setTargyakTomb(Targyak[] targyakTomb) {
+        this.targyakTomb = targyakTomb;
+    }
+
+    public int getTargyakSzama() {
+        return targyakSzama;
+    }
+
+    public void setTargyakSzama(int targyakSzama) {
+        this.targyakSzama = targyakSzama;
+    }
+
     public boolean targyFelvetel(Targyak targyak){
         if (targyak==null || targyakLista.contains(targyak)) {
             return false;
@@ -66,6 +93,37 @@ public class Hallgato extends Ember {
         targyakLista.remove(nev);
         return true;
     }
+
+    public boolean tantargyFelvetel (Targyak t) {
+        if (t==null) return false;
+        if (this.getTargyakTomb().length==targyakSzama) return false;
+        for (int i=0; i<targyakSzama; i++) {
+            if (targyakTomb[i].getKod().equals(t.getKod()))
+                return false;
+        }
+        targyakTomb[targyakSzama] = t;
+        targyakSzama++;
+        return true;
+    }
+
+    public boolean tantargyLeadas (Targyak t) {
+        if (t == null) return false;
+        if (this.targyakSzama == 0) return false;
+
+        for (int i=0; i<targyakSzama; i++)
+            //if (targyakTomb[i].getKod().equals(t.getKod()))
+            if (targyakTomb[i].equals(t)) {
+                for (int j=i; i<targyakSzama-1; j++)
+                    targyakTomb[j] = targyakTomb[j+1];
+                targyakSzama--;
+                for (int j=targyakSzama; j<targyakTomb.length; j++)
+                    targyakTomb[j] = null;
+                return true;
+            }
+        return false;
+    }
+
+
 
     public static void printHallgatok(ArrayList<Hallgato> h) {
         for(Hallgato hallgato : h) {
@@ -178,5 +236,12 @@ public class Hallgato extends Ember {
 
         System.out.println("Targyak hallgatoi:");
         Targyak.printTargyak(t);
+
+        int tomb[] = new int[10];
+        for (int i=0; i<10; i++)
+            tomb[i] = (int)(Math.random()* 21) + 20;
+
+        for (int i=0; i<11; i++)
+            System.out.println(tomb[i]);
     }
 }

@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Targyak {
     private String nev;
     private String oktato;
+    private String kod;
     private ArrayList<Hallgato> hallgatoLista;
 
     public Targyak(String nev, String oktato) {
@@ -30,6 +32,14 @@ public class Targyak {
 
     public void setOktato(String oktato) {
         this.oktato = oktato;
+    }
+
+    public String getKod() {
+        return kod;
+    }
+
+    public void setKod(String kod) {
+        this.kod = kod;
     }
 
     public void setHallgatoLista() {
@@ -66,5 +76,18 @@ public class Targyak {
 
             System.out.println();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Targyak targyak = (Targyak) o;
+        return Objects.equals(kod, targyak.kod);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }
