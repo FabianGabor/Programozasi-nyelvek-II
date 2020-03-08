@@ -254,8 +254,11 @@ public class Hallgato extends Ember {
          */
 
         System.out.println("\nOsztalyozas:");
-        o.osztalyoz(h.get(0), h.get(0).targyakLista.get(0), 5);
-        o.osztalyoz(h.get(1), h.get(1).targyakLista.get(1), 3);
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                o.osztalyoz(h.get(i), h.get(i).targyakLista.get(j), i + j);
+            }
+        }
 
         Hallgato.printHallgatok(h);
     }

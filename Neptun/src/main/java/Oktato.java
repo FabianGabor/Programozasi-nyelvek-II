@@ -22,29 +22,12 @@ public class Oktato extends Ember {
     }
 
 
-    public void osztalyoz(Hallgato hallgato, Targyak targy, int jegy) {
-        System.out.println(hallgato.getNev() + " hallgatot osztalyozom " + targy.getNev() + "-bol " + jegy + "-re");
+    public void osztalyoz (Hallgato hallgato, Targyak targy, int jegy) {
+        System.out.println(hallgato.getNev() + " hallgatot osztalyozom " + targy.getNev() + "-bol " + jegy + "-re" + "\n");
         for (int i=0; i<hallgato.getTargyakLista().size(); i++) {
             if (hallgato.getTargyakLista().get(i).getKod() == targy.getKod()) {
                 hallgato.getTargyakLista().get(i).setJegy(jegy);
             }
         }
     }
-
-
-    /*
-    public void osztalyoz(ArrayList<Hallgato> hallgato, Targyak targy, int jegy) {
-        int targyIndex = -1;
-
-        for (int i=0; i<hallgato.get(0).getTargyakLista().size(); i++) {
-            if (hallgato.get(0).getTargyakLista().get(i).getKod() == targy.getKod()) {
-                targyIndex = i;
-            }
-        }
-        hallgato.get(0).getTargyakLista().get(targyIndex).setJegy(jegy);
-    }
-
-     */
-
-
 }
