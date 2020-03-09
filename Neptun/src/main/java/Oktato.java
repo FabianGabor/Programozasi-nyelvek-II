@@ -24,10 +24,17 @@ public class Oktato extends Ember {
 
     public void osztalyoz (Hallgato hallgato, Targyak targy, int jegy) {
         System.out.println(hallgato.getNev() + " hallgatot osztalyozom " + targy.getNev() + "-bol " + jegy + "-re" + "\n");
+        if (hallgato.getTargyakLista().contains(targy)) {
+            System.out.println("\nMegvan a targy");
+            System.out.println(hallgato.getTargyakLista().indexOf(targy)+"\n");
+            hallgato.getTargyakLista().get(hallgato.getTargyakLista().indexOf(targy)).setJegy(jegy);
+        }
+        /*
         for (int i=0; i<hallgato.getTargyakLista().size(); i++) {
             if (hallgato.getTargyakLista().get(i).getKod() == targy.getKod()) {
                 hallgato.getTargyakLista().get(i).setJegy(jegy);
             }
         }
+         */
     }
 }
