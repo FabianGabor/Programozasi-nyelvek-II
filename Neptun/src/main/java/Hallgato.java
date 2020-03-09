@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class Hallgato extends Ember {
+public class Hallgato extends Ember implements Comparable<Hallgato> {
     private String neptunKod;
     private String szak;
     private int evfolyam;
@@ -146,6 +147,16 @@ public class Hallgato extends Ember {
     }
 
 
+    @Override
+    public String toString() {
+        StringBuilder szoveg = new StringBuilder();
+        szoveg.append(super.toString() + "\nneptunkod: " + neptunKod + "\nszak: " + szak);
+        Arrays.sort(targyakLista.toArray());
+        szoveg.append(Arrays.toString(targyakLista.toArray()));
+        return szoveg.toString();
+    }
+
+
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -263,5 +274,16 @@ public class Hallgato extends Ember {
         //h.get(1).getTargyakLista().get(1).setJegy(42);
 
         Hallgato.printHallgatok(h);
+    }
+
+    @Override
+    public int compareTo(Hallgato hallgato) {
+        if (this.getNev().compareTo(hallgato.getNev()) == 0) {
+            if (this.getSzuletesiEv() != hallgato.getSzuletesiEv())
+                return this.getSzuletesiEv() - hallgato.getSzuletesiEv();
+            else
+                return this.getNeptunKod().compareTo(hallgato.getNeptunKod());
+        }
+        return this.getNev().compareTo(hallgato.getNev());
     }
 }

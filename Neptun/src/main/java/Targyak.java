@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Targyak {
+public class Targyak implements Comparable {
     private String nev;
     private String oktato;
     private String kod;
@@ -104,5 +104,11 @@ public class Targyak {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @Override
+    public int compareTo(Object arg0) {
+        Targyak seged = (Targyak) arg0;
+        return this.getKod().compareTo(seged.getKod());
     }
 }
