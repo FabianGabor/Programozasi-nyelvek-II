@@ -4,6 +4,9 @@ abstract class Sikidomok {
     abstract double kerulet();
     abstract double terulet();
 
+    public Sikidomok () {
+    }
+
     public Sikidomok(String elnevezes) {
         this.elnevezes = elnevezes;
     }
