@@ -1,3 +1,8 @@
+/********************
+ *** Fábián Gábor ***
+ *** CXNU8T       ***
+ ********************/
+
 public class Trapez extends Negyszogek {
 
     public Trapez(double aoldal, double boldal, double coldal, double doldal) {

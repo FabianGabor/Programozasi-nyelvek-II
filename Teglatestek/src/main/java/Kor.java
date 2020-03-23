@@ -1,3 +1,8 @@
+/********************
+ *** Fábián Gábor ***
+ *** CXNU8T       ***
+ ********************/
+
 public class Kor extends Sikidomok {
     private double sugar;
 

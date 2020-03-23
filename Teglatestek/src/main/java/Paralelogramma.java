@@ -1,3 +1,8 @@
+/********************
+ *** Fábián Gábor ***
+ *** CXNU8T       ***
+ ********************/
+
 public class Paralelogramma extends Negyszogek {
     double szog;
 

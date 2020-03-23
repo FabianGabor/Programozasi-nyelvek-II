@@ -1,3 +1,8 @@
+/********************
+ *** Fábián Gábor ***
+ *** CXNU8T       ***
+ ********************/
+
 public class Teglalap extends Negyszogek {
     public Teglalap () {
     }

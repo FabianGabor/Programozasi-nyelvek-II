@@ -1,3 +1,8 @@
+/********************
+ *** Fábián Gábor ***
+ *** CXNU8T       ***
+ ********************/
+
 abstract public class Negyszogek extends Sikidomok {
     private double aoldal;
     private double boldal;

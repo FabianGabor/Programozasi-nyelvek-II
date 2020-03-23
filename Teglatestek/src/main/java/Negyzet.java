@@ -1,3 +1,8 @@
+/********************
+ *** Fábián Gábor ***
+ *** CXNU8T       ***
+ ********************/
+
 public class Negyzet extends Teglalap {
 
     public Negyzet(double aoldal) {
