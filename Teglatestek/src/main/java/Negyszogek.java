@@ -3,7 +3,7 @@ abstract public class Negyszogek extends Sikidomok {
     private double boldal;
     private double coldal;
     private double doldal;
-    private double szog;
+    //private double szog;
 
     public Negyszogek() {
     }
@@ -14,7 +14,7 @@ abstract public class Negyszogek extends Sikidomok {
         this.boldal = boldal;
         this.coldal = coldal;
         this.doldal = doldal;
-        this.szog = szog;
+        //this.szog = szog;
     }
 
     public double getAoldal() {
@@ -49,9 +49,9 @@ abstract public class Negyszogek extends Sikidomok {
         this.doldal = doldal;
     }
 
-    public double getSzog() { return szog; }
+    //public double getSzog() { return szog; }
 
-    public void setSzog(double szog) { this.szog = szog; }
+    //public void setSzog(double szog) { this.szog = szog; }
 
     @Override
     public String toString() {

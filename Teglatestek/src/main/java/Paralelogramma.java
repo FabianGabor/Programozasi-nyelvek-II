@@ -1,6 +1,5 @@
 public class Paralelogramma extends Negyszogek {
-    public Paralelogramma () {
-    }
+    double szog;
 
     public Paralelogramma(double aoldal, double boldal, double szog) {
         this.setElnevezes("Paralelogramma");
@@ -9,14 +8,23 @@ public class Paralelogramma extends Negyszogek {
         this.setSzog(szog);
     }
 
+    public double getSzog() {
+        return szog;
+    }
+
+    public void setSzog(double szog) {
+        this.szog = szog;
+    }
+
     @Override
     public String toString() {
-        return this.getElnevezes() + "\n"
-                + "aoldal: " + this.getAoldal() + "\n"
-                + "boldal: " + this.getBoldal() + "\n"
-                + "szog: " + this.getSzog() + "\n"
-                + "kerulet: " + this.kerulet() + "\n"
-                + "terulet: " + this.terulet();
+        return this.getElnevezes() + " { \n"
+                + "\taoldal = " + this.getAoldal() + "\n"
+                + "\tboldal = " + this.getBoldal() + "\n"
+                + "\tszog = " + this.getSzog() + "\n"
+                + "\tkerulet = " + this.kerulet() + "\n"
+                + "\tterulet = " + this.terulet() + "\n"
+                + "}\n";
     }
 
     @Override

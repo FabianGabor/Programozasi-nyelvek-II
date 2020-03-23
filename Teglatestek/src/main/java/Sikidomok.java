@@ -26,17 +26,19 @@ abstract class Sikidomok {
     }
 
     public static void main(String[] args) {
-        Sikidomok alakzat;
-        alakzat = new Sikidomok("teglalap") {
-            @Override
-            double kerulet() {
-                return 0;
-            }
+        Teglalap teglalap = new Teglalap(2,3);
+        System.out.println(teglalap.toString());
 
-            @Override
-            double terulet() {
-                return 0;
-            }
-        };
+        Negyzet negyzet = new Negyzet(5);
+        System.out.println(negyzet.toString());
+
+        Paralelogramma paralelogramma = new Paralelogramma(2,5,30);
+        System.out.println(paralelogramma.toString());
+
+        Trapez trapez = new Trapez(9,5,5,6);
+        System.out.println(trapez.toString());
+
+        Kor kor = new Kor(10);
+        System.out.println(kor.toString());
     }
 }

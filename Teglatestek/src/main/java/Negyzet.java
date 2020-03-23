@@ -1,6 +1,4 @@
 public class Negyzet extends Teglalap {
-    public Negyzet() {
-    }
 
     public Negyzet(double aoldal) {
         this.setAoldal(aoldal);
@@ -19,10 +17,11 @@ public class Negyzet extends Teglalap {
 
     @Override
     public String toString() {
-        return this.getElnevezes() + "\n"
-                + "aoldal: " + this.getAoldal() + "\n"
-                + "kerulet: " + this.kerulet() + "\n"
-                + "terulet: " + this.terulet();
+        return this.getElnevezes() + " {\n"
+                + "\taoldal: " + this.getAoldal() + "\n"
+                + "\tkerulet: " + this.kerulet() + "\n"
+                + "\tterulet: " + this.terulet() + "\n"
+                + "}\n";
     }
 
     public static void main (String[] args) {

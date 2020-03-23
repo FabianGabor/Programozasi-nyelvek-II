@@ -1,14 +1,11 @@
 public class Trapez extends Negyszogek {
 
-    public Trapez () {}
-
     public Trapez(double aoldal, double boldal, double coldal, double doldal) {
         this.setElnevezes("Trapez");
         this.setAoldal(aoldal);
         this.setBoldal(boldal);
         this.setColdal(coldal);
         this.setDoldal(doldal);
-        //this.setMagassag(magassag);
     }
 
     @Override
@@ -30,14 +27,14 @@ public class Trapez extends Negyszogek {
 
     @Override
     public String toString() {
-        return this.getElnevezes() + "\n"
-                + "aoldal: " + this.getAoldal() + "\n"
-                + "boldal: " + this.getBoldal() + "\n"
-                + "coldal: " + this.getColdal() + "\n"
-                + "doldal: " + this.getDoldal() + "\n"
-                + "szog: " + this.getSzog() + "\n"
-                + "kerulet: " + this.kerulet() + "\n"
-                + "terulet: " + this.terulet();
+        return this.getElnevezes() + " {\n"
+                + "\taoldal: " + this.getAoldal() + "\n"
+                + "\tboldal: " + this.getBoldal() + "\n"
+                + "\tcoldal: " + this.getColdal() + "\n"
+                + "\tdoldal: " + this.getDoldal() + "\n"
+                + "\tkerulet: " + this.kerulet() + "\n"
+                + "\tterulet: " + this.terulet() + "\n"
+                + "}\n";
     }
 
     public static void main (String[] args) {

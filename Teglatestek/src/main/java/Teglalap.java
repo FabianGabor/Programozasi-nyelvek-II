@@ -6,7 +6,6 @@ public class Teglalap extends Negyszogek {
         this.setAoldal(aoldal);
         this.setBoldal(boldal);
         this.setElnevezes("Teglalap");
-        //super(elnevezes, aoldal, boldal, coldal, doldal);
     }
 
     @Override
@@ -21,11 +20,12 @@ public class Teglalap extends Negyszogek {
 
     @Override
     public String toString() {
-        return this.getElnevezes() + "\n"
-                + "aoldal: " + this.getAoldal() + "\n"
-                + "boldal: " + this.getBoldal() + "\n"
-                + "kerulet: " + this.kerulet() + "\n"
-                + "terulet: " + this.terulet();
+        return this.getElnevezes() + " {\n"
+                + "\taoldal = " + this.getAoldal() + "\n"
+                + "\tboldal = " + this.getBoldal() + "\n"
+                + "\tkerulet = " + this.kerulet() + "\n"
+                + "\tterulet = " + this.terulet() + "\n"
+                + "}\n";
     }
 
     public static void main (String[] args) {
