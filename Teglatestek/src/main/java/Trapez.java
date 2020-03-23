@@ -19,6 +19,10 @@ public class Trapez extends Negyszogek {
     @Override
     double terulet() {
         // source: http://www.1728.org/quadtrap.htm
+        if (getAoldal() <= getColdal()) {
+            System.out.println("'A' oldal nagyobb kell legyen, mint 'C' oldal");
+            return 0;
+        }
         double h = ( (getAoldal() + getBoldal() - getColdal() + getDoldal()) * (-getAoldal() + getBoldal() + getColdal() + getDoldal()) * (getAoldal() - getBoldal() - getColdal() + getDoldal()) * (getAoldal() + getBoldal() - getColdal() - getDoldal()) ) / (4 * Math.pow(getAoldal()-getColdal(),2));
         h = Math.sqrt(h);
         return (this.getAoldal() + this.getColdal()) / 2 * h;
