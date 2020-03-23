@@ -100,40 +100,6 @@ public class Hallgato extends Ember implements Comparable<Hallgato> {
         return true;
     }
 
-    /*
-    public boolean tantargyFelvetel (Targyak t) {
-        if (t==null) return false;
-        if (this.getTargyakTomb().length==targyakSzama) return false;
-        for (int i=0; i<targyakSzama; i++) {
-            if (targyakTomb[i].getKod().equals(t.getKod()))
-                return false;
-        }
-        targyakTomb[targyakSzama] = t;
-        targyakSzama++;
-        return true;
-    }
-     */
-
-    /*
-    public boolean tantargyLeadas (Targyak t) {
-        if (t == null) return false;
-        if (this.targyakSzama == 0) return false;
-
-        for (int i=0; i<targyakSzama; i++)
-            //if (targyakTomb[i].getKod().equals(t.getKod()))
-            if (targyakTomb[i].equals(t)) {
-                for (int j=i; i<targyakSzama-1; j++)
-                    targyakTomb[j] = targyakTomb[j+1];
-                targyakSzama--;
-                for (int j=targyakSzama; j<targyakTomb.length; j++)
-                    targyakTomb[j] = null;
-                return true;
-            }
-        return false;
-    }
-     */
-
-
 
     public static void printHallgatok(ArrayList<Hallgato> h) {
         for(Hallgato hallgato : h) {
@@ -165,39 +131,11 @@ public class Hallgato extends Ember implements Comparable<Hallgato> {
 
 
     public static void main (String[] args) {
-
-        /*
-        System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "Array Hallgato x ArrayList<Targyak>" + ANSI_RESET);
-
-        Hallgato[] hallgatok = new Hallgato[5];
-
-        hallgatok[0] = new Hallgato("Fabian Gabor", 1987, "CXNU8T", "Programtervezo informatikus", 2019);
-        hallgatok[0].setTargyakLista();
-        hallgatok[0].targyakLista.add(0, new Targyak("Teszt targy", "Teszt oktato"));
-        hallgatok[0].targyFelvetel(new Targyak("Masik teszt targy", "Teszt oktato"));
-
-        hallgatok[1] = new Hallgato("Teszt Teszter", 1024, "0xDEADCODE", "Programtervezo informatikus", 2019);
-        hallgatok[1].setTargyakLista();
-        hallgatok[1].targyakLista.add(0, new Targyak("Valami targy", "Teszt oktato"));
-        hallgatok[1].targyFelvetel(new Targyak("Valami masik targy", "Teszt oktato"));
-
-
-        for (int i=0; i<2; i++)
-        {
-            System.out.println(hallgatok[i].getNev());
-            for (Targyak targy : hallgatok[i].targyakLista)
-                System.out.println(targy.getNev() + " " + targy.getOktato());
-            System.out.println();
-        }
-         */
-        /*
-         */
-
         System.out.println(ANSI_RED_BACKGROUND + ANSI_BLACK + "ArrayList<Hallgato> x ArrayList<Targyak>" + ANSI_RESET);
 
         ArrayList<Hallgato> h = new ArrayList<Hallgato>();
         ArrayList<Targyak> t = new ArrayList<Targyak>();
-        Oktato o = new Oktato("Oktato 1", 1951, "MS0331");
+        Oktato o = new Oktato("Oktato 1", 1971, "MS0331");
 
         // Hallgatok letrehozasa
         h.add(new Hallgato("Fabian Gabor", 1987, "CXNU8T", "Programtervezo informatikus", 2019));
@@ -216,16 +154,14 @@ public class Hallgato extends Ember implements Comparable<Hallgato> {
         h.get(0).targyFelvetel(new Targyak("Teszt targy 2", "Teszt Oktato"));
         h.get(0).targyFelvetel(new Targyak("Teszt targy 3", "Teszt Oktato"));
          */
+
+        // Letezo targyakat vehet fel a hallgato
         h.get(0).targyFelvetel(t.get(0));
         h.get(0).targyFelvetel(t.get(1));
         h.get(0).targyFelvetel(t.get(2));
 
         h.get(1).setTargyakLista();
-        /*
-        h.get(1).targyFelvetel(new Targyak("Teszt targy 1", "Oktato"));
-        h.get(1).targyFelvetel(new Targyak("Teszt targy 2", "Oktato"));
-        h.get(1).targyFelvetel(new Targyak("Teszt targy 3", "Oktato"));
-         */
+
         h.get(1).targyFelvetel(t.get(0));
         h.get(1).targyFelvetel(t.get(1));
         h.get(1).targyFelvetel(t.get(2));
@@ -270,8 +206,10 @@ public class Hallgato extends Ember implements Comparable<Hallgato> {
                 //o.osztalyoz(h.get(i), h.get(i).targyakLista.get(j), i + j);
             }
         }
+
+        // Hallgato osztalyozasa
+        // Valamiert nem csak a 0 hallgato 1-es indexu targyat osztalyozza, hanem minden hallgato 1-es indexu targyat...
         o.osztalyoz(h.get(0), h.get(0).targyakLista.get(1), 5);
-        //h.get(1).getTargyakLista().get(1).setJegy(42);
 
         Hallgato.printHallgatok(h);
     }
