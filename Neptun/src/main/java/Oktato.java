@@ -26,6 +26,8 @@ public class Oktato extends Ember {
         System.out.println(hallgato.getNev() + " hallgatot osztalyozom \"" + targy.getNev() + "\"-bol " + jegy + "-re");
         if (hallgato.getTargyakLista().contains(targy)) {
             System.out.println("A targy a(z) + " + hallgato.getTargyakLista().indexOf(targy)+" indexen talalhato.\n");
+
+            // Talán itt lehet a hiba:
             hallgato.getTargyakLista().get(hallgato.getTargyakLista().indexOf(targy)).setJegy(jegy);
         }
     }
