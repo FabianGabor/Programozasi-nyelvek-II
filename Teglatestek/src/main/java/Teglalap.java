@@ -10,15 +10,6 @@ public class Teglalap extends Negyszogek {
     }
 
     @Override
-    public String toString() {
-        return this.getElnevezes() + "\n"
-                + "aoldal: " + this.getAoldal() + "\n"
-                + "boldal: " + this.getBoldal() + "\n"
-                + "kerulet: " + this.kerulet() + "\n"
-                + "terulet: " + this.terulet();
-    }
-
-    @Override
     double kerulet() {
         return 2 * (this.getAoldal() + this.getBoldal());
     }
@@ -26,6 +17,15 @@ public class Teglalap extends Negyszogek {
     @Override
     double terulet() {
         return this.getAoldal() * this.getBoldal();
+    }
+
+    @Override
+    public String toString() {
+        return this.getElnevezes() + "\n"
+                + "aoldal: " + this.getAoldal() + "\n"
+                + "boldal: " + this.getBoldal() + "\n"
+                + "kerulet: " + this.kerulet() + "\n"
+                + "terulet: " + this.terulet();
     }
 
     public static void main (String[] args) {
