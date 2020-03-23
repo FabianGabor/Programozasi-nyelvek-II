@@ -210,6 +210,7 @@ public class Hallgato extends Ember implements Comparable<Hallgato> {
         // Hallgato osztalyozasa
         // Valamiert nem csak a 0 hallgato 1-es indexu targyat osztalyozza, hanem minden hallgato 1-es indexu targyat...
         o.osztalyoz(h.get(0), h.get(0).targyakLista.get(1), 5);
+        o.osztalyoz(h.get(1), h.get(1).targyakLista.get(1), 42);
 
         Hallgato.printHallgatok(h);
     }
