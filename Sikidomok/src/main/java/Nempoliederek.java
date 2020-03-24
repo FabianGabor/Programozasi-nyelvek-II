@@ -1,4 +1,10 @@
-package PACKAGE_NAME;
+/*
+ * Fábián Gábor
+ * CXNU8T
+ * 2020.
+ */
 
-public class Nempoliederek {
+abstract class Nempoliederek extends Testek {
+    public Nempoliederek() {
+    }
 }
