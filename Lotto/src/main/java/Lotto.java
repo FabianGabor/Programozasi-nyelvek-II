@@ -1,5 +1,6 @@
 public class Lotto {
     Szelveny szelveny = new Szelveny();
+    Sorsolas sorsolas = new Sorsolas();
 
     private void mainMenu() {
         Menu menu = new Menu();
@@ -14,6 +15,23 @@ public class Lotto {
 
     public void lottohuzas() {
         System.out.println(szelveny.toString());
+
+        sorsolas.sorsolas(10);
+        System.out.println(sorsolas.toString());
+
+        int[] valasztottSzamok = szelveny.getValasztottSzamok();
+        int[] talalatok = new int[5];
+        int talalatokSzama = 0;
+
+        for (int i = 0; i < 5; i++) {
+            if (Szelveny.benneVan(sorsolas.getKihuzottSzamok(), valasztottSzamok[i])) {
+                talalatok[talalatokSzama] = valasztottSzamok[i];
+                talalatokSzama++;
+            }
+        }
+
+        for (int i=0; i<talalatokSzama; i++)
+            System.out.println(talalatok[i]);
     }
 
     public void Kilepes() {

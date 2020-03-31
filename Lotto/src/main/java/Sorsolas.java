@@ -15,9 +15,14 @@ public class Sorsolas {
         this.kihuzottSzamok = kihuzottSzamok;
     }
 
-    public void sorsolas () {
-        for (int i=0; i<5; i++)
-            kihuzottSzamok[i] = rand.nextInt(90) + 1;
+    public void sorsolas (int max) {
+        for (int i=0; i<5; i++) {
+            int sorsoltSzam = rand.nextInt(max) + 1;
+            while ( Szelveny.benneVan(kihuzottSzamok, sorsoltSzam) ) {
+                sorsoltSzam = rand.nextInt(max) + 1;
+            }
+            kihuzottSzamok[i] = sorsoltSzam;
+        }
         Arrays.sort(kihuzottSzamok);
     }
 
@@ -28,7 +33,7 @@ public class Sorsolas {
 
     public static void main(String[] args) {
         Sorsolas sorsolas = new Sorsolas();
-        sorsolas.sorsolas();
+        sorsolas.sorsolas(10);
         System.out.println(sorsolas.toString());
     }
 }
