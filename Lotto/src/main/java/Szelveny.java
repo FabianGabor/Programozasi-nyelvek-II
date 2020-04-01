@@ -1,4 +1,10 @@
-import java.lang.reflect.Array;
+/*
+ * Fábián Gábor
+ * CXNU8T
+ * https://github.com/FabianGabor/Programozasi-nyelvek-II/tree/master/Lotto/src/main/java
+ */
+
+
 import java.util.Arrays;
 import java.util.Scanner;
 

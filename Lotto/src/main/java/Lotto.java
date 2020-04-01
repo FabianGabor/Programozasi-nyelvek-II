@@ -1,3 +1,9 @@
+/*
+ * Fábián Gábor
+ * CXNU8T
+ * https://github.com/FabianGabor/Programozasi-nyelvek-II/tree/master/Lotto/src/main/java
+ */
+
 public class Lotto {
     Szelveny szelveny = new Szelveny();
     Sorsolas sorsolas = new Sorsolas();
