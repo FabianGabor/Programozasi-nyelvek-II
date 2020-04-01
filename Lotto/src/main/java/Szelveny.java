@@ -61,9 +61,11 @@ public class Szelveny {
         return "Valasztott szamok: " + Arrays.toString(this.getValasztottSzamok());
     }
 
+    /*
     public static void main (String[] args) {
         Szelveny szelveny = new Szelveny();
         szelveny.kitoltes();
         System.out.println("Valasztott szamok: " + Arrays.toString(szelveny.getValasztottSzamok()));
     }
+     */
 }

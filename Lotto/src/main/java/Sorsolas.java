@@ -37,9 +37,11 @@ public class Sorsolas {
         return "Sorsolt szamok: " + Arrays.toString(this.getKihuzottSzamok());
     }
 
+    /*
     public static void main(String[] args) {
         Sorsolas sorsolas = new Sorsolas();
         sorsolas.sorsolas(10);
         System.out.println(sorsolas.toString());
     }
+     */
 }
