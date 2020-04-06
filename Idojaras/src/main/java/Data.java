@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Data implements Serializable, Comparable {
+public class Data implements Serializable, Comparable<Data> {
     String datum;
     double reggeliHomerseklet;
     double deliHomerseklet;
@@ -114,10 +114,14 @@ public class Data implements Serializable, Comparable {
         }
 
         for (Data d : data) {
-            System.out.println(d);
-            System.out.println("\tAtlaghomerseklet:    " + atlagHomerseklet(d) );
-            System.out.println("\tHoingadozas:         " + hoingadozas(d) );
+            kiir(d);
         }
+    }
+
+    public void kiir (Data d) {
+        System.out.println(d);
+        System.out.println("\tAtlaghomerseklet:    " + atlagHomerseklet(d) );
+        System.out.println("\tHoingadozas:         " + hoingadozas(d) );
     }
 
     public double atlagHomerseklet (Data d) {
@@ -137,6 +141,17 @@ public class Data implements Serializable, Comparable {
         return max-min;
     }
 
+    public void kereses () {
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Reszleges datum keresese: ");
+        String search = s.next();
+
+        for (Data d : data) {
+            if(d.getDatum() != null && d.getDatum().contains(search))
+                kiir(d);
+        }
+    }
 
     public void adatokRendezese (ArrayList<Data> data) {
         Collections.sort(data);
@@ -153,7 +168,7 @@ public class Data implements Serializable, Comparable {
 
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(Data o) {
         String compareDate = ((Data)o).getDatum();
         return this.getDatum().compareTo(compareDate);
     }
