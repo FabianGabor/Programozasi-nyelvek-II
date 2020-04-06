@@ -1,17 +1,12 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 public class FileRW {
      public static void main (String[] args)
      {
-         File file = new File("src/main/java/FileRW.java");
-         System.out.println(file.getAbsolutePath());
+         File fileIn = new File("src/main/java/FileRW.java");
+         System.out.println(fileIn.getAbsolutePath());
 
-         try {
-             FileInputStream in = new FileInputStream(file);
-
+         try (FileInputStream in = new FileInputStream(fileIn)){
              int data = in.read();
 
              while (data != -1) {
@@ -25,6 +20,19 @@ public class FileRW {
              e.printStackTrace();
          } catch (IOException e) {
              System.out.println("Hiba a filekezeles soran!");
+             e.printStackTrace();
+         }
+
+         File fileOut = new File("output.txt");
+         try (FileOutputStream out = new FileOutputStream(fileOut)) {
+             String s1 = "Output string 1 ";
+             String s2 = "Output string 2 ";
+             String s3 = System.getProperty("line.separator");
+             out.write((s1+s2+s3+s3).getBytes());
+             out.close();
+         } catch (FileNotFoundException e) {
+             e.printStackTrace();
+         } catch (IOException e) {
              e.printStackTrace();
          }
 
