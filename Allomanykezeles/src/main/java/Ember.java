@@ -1,4 +1,6 @@
-public class Ember {
+import java.io.Serializable;
+
+public class Ember implements Serializable {
     private String nev;
     private int szuletesiEv;
 
@@ -21,5 +23,13 @@ public class Ember {
 
     public void setSzuletesiEv(int szuletesiEv) {
         this.szuletesiEv = szuletesiEv;
+    }
+
+    @Override
+    public String toString() {
+        return "Ember{" +
+                "nev='" + nev + '\'' +
+                ", szuletesiEv=" + szuletesiEv +
+                '}';
     }
 }
