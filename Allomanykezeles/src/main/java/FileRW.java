@@ -27,12 +27,16 @@ public class FileRW {
          try (FileOutputStream out = new FileOutputStream(fileOut)) {
              String s1 = "Output string 1 ";
              String s2 = "Output string 2 ";
-             String s3 = System.getProperty("line.separator");
-             out.write((s1+s2+s3+s3).getBytes());
+             String newLine = System.getProperty("line.separator");
+             out.write((s1 + newLine + s2 + newLine).getBytes());
+
+             out.flush();
              out.close();
          } catch (FileNotFoundException e) {
+             System.out.println("A file nem letezik!");
              e.printStackTrace();
          } catch (IOException e) {
+             System.out.println("Hiba a filekezeles soran!");
              e.printStackTrace();
          }
 

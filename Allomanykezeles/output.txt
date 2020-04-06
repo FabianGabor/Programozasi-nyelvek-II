@@ -1,2 +1,2 @@
-Output string 1 Output string 2 
-
+Output string 1 
+Output string 2 
