@@ -8,6 +8,7 @@ public class Data implements Serializable, Comparable {
     double reggeliHomerseklet;
     double deliHomerseklet;
     double estiHomerseklet;
+    ArrayList <Data> data = new ArrayList<Data>();
 
     public Data() {
     }
@@ -51,9 +52,15 @@ public class Data implements Serializable, Comparable {
         this.estiHomerseklet = estiHomerseklet;
     }
 
-    public void adatokMegadasa () {
-        //Filekezeles file = new Filekezeles();
+    public ArrayList<Data> getData() {
+        return data;
+    }
 
+    public void setData(ArrayList<Data> data) {
+        this.data = data;
+    }
+
+    public void adatokMegadasa () {
         Scanner s = new Scanner(System.in);
         System.out.println("Datum:");
         this.setDatum(s.next());
@@ -84,25 +91,64 @@ public class Data implements Serializable, Comparable {
 
     public void adatokMegjelenitese () {
         Filekezeles out = new Filekezeles();
-        ArrayList <Data> data = new ArrayList<Data>();
 
-        data = out.readFromFile();
+        setData(out.readFromFile());
+        ArrayList<Data> data = this.getData();
 
         // Pluszpont datum szerinti rendezesert //
-        Collections.sort(data);
+        adatokRendezese(data);
 
         for (Data d : data) {
             System.out.println(d);
         }
     }
 
+    public void adatokElemzese () {
+        ArrayList<Data> data = this.getData();
+
+        if (data.isEmpty()) {
+            Filekezeles out = new Filekezeles();
+            setData(out.readFromFile());
+            data = this.getData();
+            adatokRendezese(data);
+        }
+
+        for (Data d : data) {
+            System.out.println(d);
+            System.out.println("\tAtlaghomerseklet:    " + atlagHomerseklet(d) );
+            System.out.println("\tHoingadozas:         " + hoingadozas(d) );
+        }
+    }
+
+    public double atlagHomerseklet (Data d) {
+        return (d.reggeliHomerseklet + d.deliHomerseklet + d.estiHomerseklet)/3;
+    }
+
+    public double hoingadozas (Data d) {
+        double min = d.reggeliHomerseklet;
+        double max = d.reggeliHomerseklet;
+
+        if (min > d.deliHomerseklet) min = d.deliHomerseklet;
+        if (min > d.estiHomerseklet) min = d.estiHomerseklet;
+
+        if (max < d.deliHomerseklet) max = d.deliHomerseklet;
+        if (max < d.estiHomerseklet) max = d.estiHomerseklet;
+
+        return max-min;
+    }
+
+
+    public void adatokRendezese (ArrayList<Data> data) {
+        Collections.sort(data);
+    }
+
     @Override
     public String toString() {
-        return
+        return  "\n" +
                 datum + "\n" +
                 "\tReggeli homerseklet: " + reggeliHomerseklet + "\n" +
                 "\tDeli homerseklet:    " + deliHomerseklet + "\n" +
-                "\tEsti homerseklet:    " + estiHomerseklet + "\n";
+                "\tEsti homerseklet:    " + estiHomerseklet;
     }
 
 

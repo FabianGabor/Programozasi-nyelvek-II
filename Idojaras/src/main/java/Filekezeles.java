@@ -31,6 +31,7 @@ public class Filekezeles {
     public ArrayList<Data> readFromFile () {
         ArrayList<Data> data = new ArrayList<Data>();
 
+
         try {
             in = new DataInputStream(new FileInputStream(file));
             boolean eof = false;
