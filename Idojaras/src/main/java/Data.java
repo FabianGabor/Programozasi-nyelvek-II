@@ -1,3 +1,9 @@
+/*
+ * Fábián Gábor
+ * CXNU8T
+ * https://github.com/FabianGabor/Programozasi-nyelvek-II/tree/master/Idojaras/src/main/java
+ */
+
 import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;

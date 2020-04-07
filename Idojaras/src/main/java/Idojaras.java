@@ -1,3 +1,9 @@
+/*
+ * Fábián Gábor
+ * CXNU8T
+ * https://github.com/FabianGabor/Programozasi-nyelvek-II/tree/master/Idojaras/src/main/java
+ */
+
 public class Idojaras {
 
     Data data = new Data();
