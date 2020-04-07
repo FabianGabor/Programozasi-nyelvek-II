@@ -70,6 +70,8 @@ public class Data implements Serializable, Comparable<Data> {
         this.data = data;
     }
 
+    public void addData(Data data) { this.data.add(data); }
+
     public boolean isRandomValues() {
         return randomValues;
     }
@@ -136,7 +138,17 @@ public class Data implements Serializable, Comparable<Data> {
 
         Filekezeles out = new Filekezeles();
         out.writeToFile(this);
+
+        // meglevo adatokhoz hozzafuzes, hogy ne kelljen majd ezt is kiolvasni a filebol, ha az uj adatokat is meg szeretnenk jeleniteni
+        ArrayList<Data> data = this.getData();
+        Data newData = new Data(datum,reggeliHomerseklet,deliHomerseklet,estiHomerseklet);
+        if (! data.isEmpty() ) {
+            this.addData(newData);
+            this.setData(data);
+        }
     }
+
+
 
     public void adatokMegjelenitese () {
         Filekezeles out = new Filekezeles();
