@@ -68,18 +68,22 @@ public class Data implements Serializable, Comparable<Data> {
         //this.setDatum(s.next());
 
 
-        for (int honap = 1; honap <=12; honap++)
-            System.out.println(honap + " : " + Math.sin(Math.toRadians((double)(honap-1+9) * 360 / 12)));
 
-        this.setDatum( String.valueOf(rand.nextInt((2020 - 2019) + 1) + 2019 ) + "." + String.valueOf(rand.nextInt((12 - 1) + 1) + 1 ) + "." + String.valueOf(rand.nextInt((31 - 1) + 1) + 1 ));
+
+
+        int honap = rand.nextInt((12 - 1) + 1) + 1 ;
+
+        this.setDatum( String.valueOf(rand.nextInt((2020 - 2019) + 1) + 2019 ) + "." + String.valueOf(honap) + "." + String.valueOf(rand.nextInt((31 - 1) + 1) + 1 ));
         System.out.println(this.getDatum());
 
         double temp;
+        double mult;
+        mult = Math.sin(Math.toRadians((double)(honap-1+9) * 360 / 12));
 
         do {
             System.out.println("Reggeli homerseklet:");
             //temp = Double.parseDouble(s.next());
-            temp = rand.nextInt((60 + 70) + 1) - 70;
+            temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
             this.setReggeliHomerseklet(temp);
         } while ((temp > 60) || (temp < -70));
         System.out.println(temp);
@@ -87,7 +91,7 @@ public class Data implements Serializable, Comparable<Data> {
         do {
             System.out.println("Deli homerseklet:");
             //temp = Double.parseDouble(s.next());
-            temp = rand.nextInt((60 + 70) + 1) - 70 ;
+            temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
             this.setDeliHomerseklet(temp);
         } while ((temp > 60) || (temp < -70));
         System.out.println(temp);
@@ -95,7 +99,7 @@ public class Data implements Serializable, Comparable<Data> {
         do {
             System.out.println("Esti homerseklet:");
             //temp = Double.parseDouble(s.next());
-            temp = rand.nextInt((60 + 70) + 1) - 70;
+            temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
             this.setEstiHomerseklet(temp);
         } while ((temp > 60) || (temp < -70));
         System.out.println(temp);
