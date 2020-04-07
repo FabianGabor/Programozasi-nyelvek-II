@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Data implements Serializable, Comparable<Data> {
@@ -61,29 +62,43 @@ public class Data implements Serializable, Comparable<Data> {
     }
 
     public void adatokMegadasa () {
+        Random rand = new Random();
         Scanner s = new Scanner(System.in);
         System.out.println("Datum:");
-        this.setDatum(s.next());
+        //this.setDatum(s.next());
+
+
+        for (int honap = 1; honap <=12; honap++)
+            System.out.println(honap + " : " + Math.sin(Math.toRadians((double)(honap-1+9) * 360 / 12)));
+
+        this.setDatum( String.valueOf(rand.nextInt((2020 - 2019) + 1) + 2019 ) + "." + String.valueOf(rand.nextInt((12 - 1) + 1) + 1 ) + "." + String.valueOf(rand.nextInt((31 - 1) + 1) + 1 ));
+        System.out.println(this.getDatum());
 
         double temp;
 
         do {
             System.out.println("Reggeli homerseklet:");
-            temp = Double.parseDouble(s.next());
+            //temp = Double.parseDouble(s.next());
+            temp = rand.nextInt((60 + 70) + 1) - 70;
             this.setReggeliHomerseklet(temp);
         } while ((temp > 60) || (temp < -70));
+        System.out.println(temp);
 
         do {
             System.out.println("Deli homerseklet:");
-            temp = Double.parseDouble(s.next());
+            //temp = Double.parseDouble(s.next());
+            temp = rand.nextInt((60 + 70) + 1) - 70 ;
             this.setDeliHomerseklet(temp);
         } while ((temp > 60) || (temp < -70));
+        System.out.println(temp);
 
         do {
             System.out.println("Esti homerseklet:");
-            temp = Double.parseDouble(s.next());
+            //temp = Double.parseDouble(s.next());
+            temp = rand.nextInt((60 + 70) + 1) - 70;
             this.setEstiHomerseklet(temp);
         } while ((temp > 60) || (temp < -70));
+        System.out.println(temp);
 
         Filekezeles out = new Filekezeles();
         out.writeToFile(this);
