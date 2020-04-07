@@ -82,10 +82,13 @@ public class Data implements Serializable, Comparable<Data> {
         Random rand = new Random();
         Scanner s = new Scanner(System.in);
         System.out.println("Dátum:");
-        //this.setDatum(s.next());
 
         int honap = rand.nextInt((12 - 1) + 1) + 1 ;
-        this.setDatum( String.valueOf(rand.nextInt((2020 - 2010) + 1) + 2010 ) + "." + String.valueOf(honap) + "." + String.valueOf(rand.nextInt((31 - 1) + 1) + 1 ) + ".");
+
+        if (isRandomValues())
+            this.setDatum( String.valueOf(rand.nextInt((2020 - 2010) + 1) + 2010 ) + "." + String.valueOf(honap) + "." + String.valueOf(rand.nextInt((31 - 1) + 1) + 1 ) + ".");
+        else
+            this.setDatum(s.next());
         System.out.println(this.getDatum());
 
         double temp;
