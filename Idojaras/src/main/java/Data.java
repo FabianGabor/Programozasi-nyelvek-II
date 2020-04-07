@@ -67,12 +67,7 @@ public class Data implements Serializable, Comparable<Data> {
         System.out.println("Datum:");
         //this.setDatum(s.next());
 
-
-
-
-
         int honap = rand.nextInt((12 - 1) + 1) + 1 ;
-
         this.setDatum( String.valueOf(rand.nextInt((2020 - 2019) + 1) + 2019 ) + "." + String.valueOf(honap) + "." + String.valueOf(rand.nextInt((31 - 1) + 1) + 1 ));
         System.out.println(this.getDatum());
 
