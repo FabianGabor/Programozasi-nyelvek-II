@@ -22,7 +22,7 @@ public class Menu {
         Menu.in = new BufferedReader(new InputStreamReader(System.in));
         //this.setTitle("Menu");
 
-        this.exitItem = new MenuItem("Kilepes"); // A root menu will exit from the program
+        this.exitItem = new MenuItem("Kilépés"); // A root menu will exit from the program
 
         this.exitItem.setExitItem(true); // Let the MenuItem know that it is the exit item for this menu
     }
@@ -59,7 +59,7 @@ public class Menu {
             else item = itemList.get(option - 1); // -1 as itemList(0) -> item 1 in printed menu
         }
         catch (NumberFormatException ex) {
-            System.out.println("\nHiba: '" + input + "' nem lehetseges valasztas!");
+            System.out.println("\nHiba: '" + input + "' nem lehetséges választás!");
             item = new MenuItem(null); // Return a dummy menu item which ensures it cannot be invoked
         }
         catch (IOException ex) { ex.printStackTrace(); }

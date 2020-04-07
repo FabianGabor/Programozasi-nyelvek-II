@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -10,6 +11,8 @@ public class Data implements Serializable, Comparable<Data> {
     double deliHomerseklet;
     double estiHomerseklet;
     ArrayList <Data> data = new ArrayList<Data>();
+    boolean randomValues = false;
+    DecimalFormat df = new DecimalFormat("#.##");
 
     public Data() {
     }
@@ -61,43 +64,66 @@ public class Data implements Serializable, Comparable<Data> {
         this.data = data;
     }
 
+    public boolean isRandomValues() {
+        return randomValues;
+    }
+
+    public void setRandomValues(boolean randomValues) {
+        this.randomValues = randomValues;
+    }
+
+    public void randomAdatokMegadasa() {
+        setRandomValues(true);
+        adatokMegadasa();
+        setRandomValues(false);
+    }
+
     public void adatokMegadasa () {
         Random rand = new Random();
         Scanner s = new Scanner(System.in);
-        System.out.println("Datum:");
+        System.out.println("Dátum:");
         //this.setDatum(s.next());
 
         int honap = rand.nextInt((12 - 1) + 1) + 1 ;
-        this.setDatum( String.valueOf(rand.nextInt((2020 - 2019) + 1) + 2019 ) + "." + String.valueOf(honap) + "." + String.valueOf(rand.nextInt((31 - 1) + 1) + 1 ));
+        this.setDatum( String.valueOf(rand.nextInt((2020 - 2010) + 1) + 2010 ) + "." + String.valueOf(honap) + "." + String.valueOf(rand.nextInt((31 - 1) + 1) + 1 ) + ".");
         System.out.println(this.getDatum());
 
         double temp;
         double mult;
-        mult = Math.sin(Math.toRadians((double)(honap-1+9) * 360 / 12));
+        mult = Math.sin(Math.toRadians((double)(honap-1+9) * 360 / 12)); // evszak/honap szerint magasabb/alacsonyabb random homersekletek
 
         do {
-            System.out.println("Reggeli homerseklet:");
-            //temp = Double.parseDouble(s.next());
-            temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
-            this.setReggeliHomerseklet(temp);
+            System.out.println("Reggeli hőmérséklet:");
+            if (isRandomValues()) {
+                temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
+                System.out.println(df.format(temp));
+            }
+            else
+                temp = Double.parseDouble(s.next());
         } while ((temp > 60) || (temp < -70));
-        System.out.println(temp);
+        this.setReggeliHomerseklet(temp);
 
         do {
-            System.out.println("Deli homerseklet:");
-            //temp = Double.parseDouble(s.next());
-            temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
-            this.setDeliHomerseklet(temp);
+            System.out.println("Déli hőmérséklet:");
+            if (isRandomValues()) {
+                temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
+                System.out.println(df.format(temp));
+            }
+            else
+                temp = Double.parseDouble(s.next());
         } while ((temp > 60) || (temp < -70));
-        System.out.println(temp);
+        this.setDeliHomerseklet(temp);
 
         do {
-            System.out.println("Esti homerseklet:");
-            //temp = Double.parseDouble(s.next());
-            temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
-            this.setEstiHomerseklet(temp);
+            System.out.println("Esti hőmérséklet:");
+            if (isRandomValues()) {
+                temp = (rand.nextInt((60 + 70) + 1) - 70) * mult;
+                System.out.println(df.format(temp));
+            }
+            else
+                temp = Double.parseDouble(s.next());
         } while ((temp > 60) || (temp < -70));
-        System.out.println(temp);
+        this.setEstiHomerseklet(temp);
 
         Filekezeles out = new Filekezeles();
         out.writeToFile(this);
@@ -134,8 +160,8 @@ public class Data implements Serializable, Comparable<Data> {
 
     public void kiir (Data d) {
         System.out.println(d);
-        System.out.println("\tAtlaghomerseklet:    " + atlagHomerseklet(d) );
-        System.out.println("\tHoingadozas:         " + hoingadozas(d) );
+        System.out.println("\tÁtlaghőmérséklet:    " + df.format(atlagHomerseklet(d)) );
+        System.out.println("\tHőingadozás:         " + df.format(hoingadozas(d)) );
     }
 
     public double atlagHomerseklet (Data d) {
@@ -158,7 +184,7 @@ public class Data implements Serializable, Comparable<Data> {
     public void kereses () {
         Scanner s = new Scanner(System.in);
 
-        System.out.println("Reszleges datum keresese: ");
+        System.out.println("Részleges dátum keresése: ");
         String search = s.next();
 
         for (Data d : data) {
@@ -173,11 +199,12 @@ public class Data implements Serializable, Comparable<Data> {
 
     @Override
     public String toString() {
+
         return  "\n" +
                 datum + "\n" +
-                "\tReggeli homerseklet: " + reggeliHomerseklet + "\n" +
-                "\tDeli homerseklet:    " + deliHomerseklet + "\n" +
-                "\tEsti homerseklet:    " + estiHomerseklet;
+                "\tReggeli hőmérséklet: " + df.format(reggeliHomerseklet) + "\n" +
+                "\tDéli hőmérséklet:    " + df.format(deliHomerseklet) + "\n" +
+                "\tEsti hőmérséklet:    " + df.format(estiHomerseklet);
     }
 
 
