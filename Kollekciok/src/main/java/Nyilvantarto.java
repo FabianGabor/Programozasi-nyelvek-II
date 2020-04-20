@@ -2,9 +2,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Nyilvantarto {
-    Vector<Ember> tarolo = new Vector<>();
+    //Vector<Ember> tarolo = new Vector<>();
+    //List<Ember> tarolo = new ArrayList<>();
+    ArrayList<Ember> tarolo = new ArrayList<>();
 
     public static void main(String[] args) {
         Nyilvantarto adattarolo = new Nyilvantarto();
@@ -14,7 +18,7 @@ public class Nyilvantarto {
         adattarolo.tarolo.add(new Ember("Teszt 2", 2000));
 
         System.out.println("Meret: " + adattarolo.tarolo.size());
-        System.out.println("Kapacitas: " + adattarolo.tarolo.capacity());
+        //System.out.println("Kapacitas: " + adattarolo.tarolo.capacity()); // List nem tud capacity()-t
 
         Iterator<Ember> emberIterator = adattarolo.tarolo.iterator();
         while (emberIterator.hasNext()) {
