@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Ember {
+public class Ember implements Serializable {
     private String nev;
     private int szuletesiEv;
     private boolean nem;
