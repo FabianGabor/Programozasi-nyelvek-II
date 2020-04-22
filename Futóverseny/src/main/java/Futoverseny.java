@@ -10,7 +10,7 @@ public class Futoverseny {
         menu.addItem(new MenuItem("Versenyző törlése", verseny, "versenyzoTorlese"));
         menu.addItem(new MenuItem("Versenyzők listázása név szerint ", verseny, "versenyzokNevSzerint"));
         menu.addItem(new MenuItem("Versenyzők listázása rajtszám szerint ", verseny, "versenyzokRajtszamSzerint"));
-        menu.addItem(new MenuItem("Versenyzők listázása eredmény szerint ", verseny, "versenyzokEredmenySzerint"));
+        menu.addItem(new MenuItem("Versenyzők listázása eredmény szerint ", verseny, "versenyzokHelyezesSzerint"));
         menu.addItem(new MenuItem("Mentés", verseny, "Mentes"));
         menu.addItem(new MenuItem("Betöltés", verseny, "Betoltes"));
         menu.execute();
