@@ -1,10 +1,14 @@
 import java.io.Serializable;
 import java.util.Comparator;
+import java.util.Iterator;
 
-public class Versenyzo implements Serializable, Comparable<Versenyzo> {
+public class Versenyzo implements Serializable, Comparable<Versenyzo>, Iterable<Versenyzo> {
     private String nev;
     private int rajtszam;
     private int helyezes;
+
+    public Versenyzo() {
+    }
 
     public Versenyzo(String nev, int rajtszam, int helyezes) {
         this.nev = nev;
@@ -63,6 +67,11 @@ public class Versenyzo implements Serializable, Comparable<Versenyzo> {
     @Override
     public int compareTo(Versenyzo versenyzo) {
         return this.getNev().compareToIgnoreCase(versenyzo.getNev());
+    }
+
+    @Override
+    public Iterator<Versenyzo> iterator() {
+        return null;
     }
 }
 
