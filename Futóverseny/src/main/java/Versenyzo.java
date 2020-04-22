@@ -81,3 +81,17 @@ class compareNev implements Comparator<Versenyzo> {
         return v1.getNev().compareToIgnoreCase(v2.getNev());
     }
 }
+
+class compareRajtszam implements Comparator<Versenyzo> {
+    @Override
+    public int compare(Versenyzo v1, Versenyzo v2) {
+        return v1.getRajtszam()- v2.getRajtszam();
+    }
+}
+
+class compareHelyezes implements Comparator<Versenyzo> {
+    @Override
+    public int compare(Versenyzo v1, Versenyzo v2) {
+        return v1.getHelyezes()- v2.getHelyezes();
+    }
+}

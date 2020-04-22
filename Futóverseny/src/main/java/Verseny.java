@@ -88,7 +88,7 @@ public class Verseny {
         int helyezes;
 
         System.out.println("Versenyző neve:");
-        versenyzo.setNev(s.nextLine());
+        versenyzo.setNev(s.nextLine());  // azonos nevu versenyzok letezhetnek valosagban is, nem ellenorizzuk
 
         System.out.println("Versenyző rajtszáma:");
         rajtszam = s.nextInt();
@@ -115,11 +115,10 @@ public class Verseny {
             Iterable<Versenyzo> lastElement = Iterables.getLast(versenyzok, null);
             System.out.println("Felvittem:\n" + lastElement);
         } catch(Exception e) {
-            **System.out.println("com.google.common.collect.Iterables MISS");
+            //System.out.println("com.google.common.collect.Iterables MISS");
             Versenyzo lastElement = versenyzok.get(versenyzok.size() - 1);
             System.out.println("Felvittem:\n" + lastElement);
         }
-
     }
 
     public boolean containsRajtszam(final List<Versenyzo> versenyzok, final int rajtszam){
@@ -131,6 +130,18 @@ public class Verseny {
 
     public void versenyzokNevSzerint() {
         Collections.sort(versenyzok, new compareNev());
+        for (Versenyzo v : versenyzok)
+            System.out.println(v);
+    }
+
+    public void versenyzokRajtszamSzerint() {
+        Collections.sort(versenyzok, new compareRajtszam());
+        for (Versenyzo v : versenyzok)
+            System.out.println(v);
+    }
+
+    public void versenyzokHelyezesSzerint() {
+        Collections.sort(versenyzok, new compareHelyezes());
         for (Versenyzo v : versenyzok)
             System.out.println(v);
     }
