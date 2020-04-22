@@ -136,6 +136,34 @@ public class Verseny {
 		System.out.println(v);
 	}
 
+	public void versenyzoAdatmodositas() {
+		Scanner s = new Scanner(System.in);
+		String nev, ujNev;
+		int rajtszam, helyezes;
+
+		System.out.println("Versenyzo neve:");
+		nev = s.next();
+
+		Versenyzo v = versenyzok.stream().filter(versenyzo -> nev.equals(versenyzo.getNev())).findFirst().orElse(null);
+		int index = versenyzok.indexOf(v);
+
+		System.out.println(v);
+
+		System.out.println("Versenyző új neve:");
+		ujNev = s.next();
+
+		System.out.println("Versenyző új rajtszáma:");
+		rajtszam = s.nextInt();
+
+		System.out.println("Versenyző új helyezése:");
+		helyezes = s.nextInt();
+
+		versenyzok.set(index, new Versenyzo(ujNev, rajtszam, helyezes));
+
+		System.out.println(versenyzok.get(index));
+
+	}
+
 	public boolean containsNev(final List<Versenyzo> versenyzok, final String nev){
 		return versenyzok.stream().anyMatch(o -> o.getNev() == nev);
 	}
