@@ -154,14 +154,23 @@ public class Verseny {
 
 		System.out.println("Versenyző új rajtszáma:");
 		rajtszam = s.nextInt();
+		while (rajtszam<=0 || containsRajtszam(versenyzok, rajtszam)) {
+			System.out.println("A rajtszám már létezik!");
+			System.out.println("Versenyző rajtszáma:");
+			rajtszam = s.nextInt();
+		}
 
-		System.out.println("Versenyző új helyezése:");
+		System.out.println("Versenyző helyezése:");
 		helyezes = s.nextInt();
+		while (helyezes<=0 || containsHelyezes(versenyzok, helyezes)) {
+			System.out.println("A helyezés már létezik!");
+			System.out.println("Versenyző helyezése:");
+			helyezes = s.nextInt();
+		}
 
 		versenyzok.set(index, new Versenyzo(ujNev, rajtszam, helyezes));
 
 		System.out.println(versenyzok.get(index));
-
 	}
 
 	public boolean containsNev(final List<Versenyzo> versenyzok, final String nev){
