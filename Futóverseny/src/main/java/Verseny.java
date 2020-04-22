@@ -47,13 +47,6 @@ public class Verseny implements Serializable {
         this.versenyzok = versenyzok;
     }
 
-    public static void main(String[] args) {
-        Verseny verseny = new Verseny();
-        verseny.setElnevezes("Zombie Shuffle");
-        verseny.setIdopont(2020,04,22,9,00);
-        System.out.println(verseny);
-    }
-
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd. HH:mm");
@@ -61,5 +54,12 @@ public class Verseny implements Serializable {
                 "\n\tElnevezes:\t" + elnevezes +
                 "\n\tIdopont: \t" + sdf.format(idopont.getTime()) +
                 "\n}";
+    }
+
+    public static void main(String[] args) {
+        Verseny verseny = new Verseny();
+        verseny.setElnevezes("Zombie Shuffle");
+        verseny.setIdopont(2020,04,22,9,00);
+        System.out.println(verseny);
     }
 }
