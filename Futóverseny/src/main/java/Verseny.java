@@ -88,34 +88,21 @@ public class Verseny {
 		versenyzok.add(versenyzo);
 		versenyzo = new Versenyzo("bbb", 2, 2);
 		versenyzok.add(versenyzo);
+
 		/*
 		Scanner s = new Scanner(System.in);
-		int rajtszam;
-		int helyezes;
 
 		System.out.println("Versenyző neve:");
 		versenyzo.setNev(s.nextLine());  // azonos nevu versenyzok letezhetnek valosagban is, nem ellenorizzuk
 
 		System.out.println("Versenyző rajtszáma:");
-		rajtszam = s.nextInt();
-
-		while (rajtszam<=0 || containsRajtszam(versenyzok, rajtszam)) {
-			System.out.println("A rajtszám már létezik!");
-			System.out.println("Versenyző rajtszáma:");
-			rajtszam = s.nextInt();
-		}
-		versenyzo.setRajtszam(rajtszam);
+		versenyzo.setRajtszam(rajtszamInput());
 
 		System.out.println("Versenyző helyezése:");
-		helyezes = s.nextInt();
-		while (helyezes<=0 || containsHelyezes(versenyzok, helyezes)) {
-			System.out.println("A helyezés már létezik!");
-			System.out.println("Versenyző helyezése:");
-			helyezes = s.nextInt();
-		}
-		versenyzo.setHelyezes(helyezes);
+		versenyzo.setHelyezes(helyezesInput());
 
 		versenyzok.add(versenyzo);
+		 */
 		try {
 			//System.out.println(Class.forName("com.google.common.collect.Iterables"));
 			Iterable<Versenyzo> lastElement = Iterables.getLast(versenyzok, null);
@@ -125,8 +112,6 @@ public class Verseny {
 			Versenyzo lastElement = versenyzok.get(versenyzok.size() - 1);
 			System.out.println("Felvittem:\n" + lastElement);
 		}
-
-		 */
 	}
 
 	public int keresesNevSzerint(String nev) {
@@ -141,7 +126,7 @@ public class Verseny {
 		String nev;
 
 		System.out.println("Versenyzo neve:");
-		nev = s.next();
+		nev = s.nextLine();
 
 		try {
 			Versenyzo v = versenyzok.get(keresesNevSzerint(nev));
@@ -152,12 +137,12 @@ public class Verseny {
 	}
 
 	public void versenyzoAdatmodositas() {
+		Versenyzo versenyzo = new Versenyzo();
 		Scanner s = new Scanner(System.in);
-		String nev, ujNev;
-		int rajtszam, helyezes;
+		String nev;
 
-		System.out.println("Versenyzo neve:");
-		nev = s.next();
+		System.out.println("Versenyző neve:");
+		nev = s.nextLine();
 
 		try {
 			int index = keresesNevSzerint(nev);
@@ -165,25 +150,15 @@ public class Verseny {
 			System.out.println(v);
 
 			System.out.println("Versenyző új neve:");
-			ujNev = s.next();
+			versenyzo.setNev(nevInput());
 
 			System.out.println("Versenyző új rajtszáma:");
-			rajtszam = s.nextInt();
-			while (rajtszam<=0 || containsRajtszam(versenyzok, rajtszam)) {
-				System.out.println("A rajtszám már létezik!");
-				System.out.println("Versenyző rajtszáma:");
-				rajtszam = s.nextInt();
-			}
+			versenyzo.setRajtszam(rajtszamInput());
 
-			System.out.println("Versenyző helyezése:");
-			helyezes = s.nextInt();
-			while (helyezes<=0 || containsHelyezes(versenyzok, helyezes)) {
-				System.out.println("A helyezés már létezik!");
-				System.out.println("Versenyző helyezése:");
-				helyezes = s.nextInt();
-			}
+			System.out.println("Versenyző új helyezése:");
+			versenyzo.setHelyezes(helyezesInput());
 
-			versenyzok.set(index, new Versenyzo(ujNev, rajtszam, helyezes));
+			versenyzok.set(index, versenyzo);
 
 			System.out.println(versenyzok.get(index));
 		} catch (Exception e) {
@@ -218,6 +193,45 @@ public class Verseny {
 	}
 	public boolean containsHelyezes(final List<Versenyzo> versenyzok, final int helyezes){
 		return versenyzok.stream().anyMatch(o -> o.getHelyezes() == helyezes);
+	}
+
+	public String nevInput() {
+		Scanner s = new Scanner(System.in);
+		String nev;
+
+		nev = s.nextLine();
+		while (nev == null || containsNev(versenyzok, nev)) {
+			System.out.println("A név már létezik!");
+			System.out.println("Versenyző neve:");
+			nev = s.nextLine();
+		}
+		return nev;
+	}
+
+	public int rajtszamInput() {
+		Scanner s = new Scanner(System.in);
+		int rajtszam;
+
+		rajtszam = s.nextInt();
+		while (rajtszam<=0 || containsRajtszam(versenyzok, rajtszam)) {
+			System.out.println("A rajtszám már létezik!");
+			System.out.println("Versenyző rajtszáma:");
+			rajtszam = s.nextInt();
+		}
+		return rajtszam;
+	}
+
+	public int helyezesInput() {
+		Scanner s = new Scanner(System.in);
+		int helyezes;
+
+		helyezes = s.nextInt();
+		while (helyezes<=0 || containsRajtszam(versenyzok, helyezes)) {
+			System.out.println("A helyezés már létezik!");
+			System.out.println("Versenyző helyezése:");
+			helyezes = s.nextInt();
+		}
+		return helyezes;
 	}
 
 	public static void main(String[] args) {
