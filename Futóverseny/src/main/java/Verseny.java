@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Verseny {
 	private String elnevezes;
@@ -84,7 +83,12 @@ public class Verseny {
 	}
 
 	public void versenyzoFelvitele() {
-		Versenyzo versenyzo = new Versenyzo();
+		//Versenyzo versenyzo = new Versenyzo();
+		Versenyzo versenyzo = new Versenyzo("aaa", 1, 1);
+		versenyzok.add(versenyzo);
+		versenyzo = new Versenyzo("bbb", 2, 2);
+		versenyzok.add(versenyzo);
+		/*
 		Scanner s = new Scanner(System.in);
 		int rajtszam;
 		int helyezes;
@@ -121,19 +125,30 @@ public class Verseny {
 			Versenyzo lastElement = versenyzok.get(versenyzok.size() - 1);
 			System.out.println("Felvittem:\n" + lastElement);
 		}
+
+		 */
+	}
+
+	public int keresesNevSzerint(String nev) {
+		OptionalInt index = IntStream.range(0, versenyzok.size())
+				.filter(i -> nev.equals(versenyzok.get(i).getNev()))
+				.findFirst();
+		return index.getAsInt();
 	}
 
 	public void versenyzoKereses() {
 		Scanner s = new Scanner(System.in);
-		String nev, ujNev;
-		int rajtszam, helyezes;
+		String nev;
 
 		System.out.println("Versenyzo neve:");
 		nev = s.next();
 
-		Versenyzo v = versenyzok.stream().filter(versenyzo -> nev.equals(versenyzo.getNev())).findFirst().orElse(null);
-
-		System.out.println(v);
+		try {
+			Versenyzo v = versenyzok.get(keresesNevSzerint(nev));
+			System.out.println(v);
+		} catch (Exception e) {
+			System.out.println("Nem található versenyző ilyen névvel.");
+		}
 	}
 
 	public void versenyzoAdatmodositas() {
@@ -144,33 +159,36 @@ public class Verseny {
 		System.out.println("Versenyzo neve:");
 		nev = s.next();
 
-		Versenyzo v = versenyzok.stream().filter(versenyzo -> nev.equals(versenyzo.getNev())).findFirst().orElse(null);
-		int index = versenyzok.indexOf(v);
+		try {
+			int index = keresesNevSzerint(nev);
+			Versenyzo v = versenyzok.get(index);
+			System.out.println(v);
 
-		System.out.println(v);
+			System.out.println("Versenyző új neve:");
+			ujNev = s.next();
 
-		System.out.println("Versenyző új neve:");
-		ujNev = s.next();
-
-		System.out.println("Versenyző új rajtszáma:");
-		rajtszam = s.nextInt();
-		while (rajtszam<=0 || containsRajtszam(versenyzok, rajtszam)) {
-			System.out.println("A rajtszám már létezik!");
-			System.out.println("Versenyző rajtszáma:");
+			System.out.println("Versenyző új rajtszáma:");
 			rajtszam = s.nextInt();
-		}
+			while (rajtszam<=0 || containsRajtszam(versenyzok, rajtszam)) {
+				System.out.println("A rajtszám már létezik!");
+				System.out.println("Versenyző rajtszáma:");
+				rajtszam = s.nextInt();
+			}
 
-		System.out.println("Versenyző helyezése:");
-		helyezes = s.nextInt();
-		while (helyezes<=0 || containsHelyezes(versenyzok, helyezes)) {
-			System.out.println("A helyezés már létezik!");
 			System.out.println("Versenyző helyezése:");
 			helyezes = s.nextInt();
+			while (helyezes<=0 || containsHelyezes(versenyzok, helyezes)) {
+				System.out.println("A helyezés már létezik!");
+				System.out.println("Versenyző helyezése:");
+				helyezes = s.nextInt();
+			}
+
+			versenyzok.set(index, new Versenyzo(ujNev, rajtszam, helyezes));
+
+			System.out.println(versenyzok.get(index));
+		} catch (Exception e) {
+			System.out.println("Nem található versenyző ilyen névvel.");
 		}
-
-		versenyzok.set(index, new Versenyzo(ujNev, rajtszam, helyezes));
-
-		System.out.println(versenyzok.get(index));
 	}
 
 	public boolean containsNev(final List<Versenyzo> versenyzok, final String nev){
