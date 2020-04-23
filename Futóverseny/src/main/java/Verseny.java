@@ -191,17 +191,6 @@ public class Verseny {
 		}
 	}
 
-	public boolean containsNev(final List<Versenyzo> versenyzok, final String nev){
-		return versenyzok.stream().anyMatch(o -> o.getNev() == nev);
-	}
-
-	public boolean containsRajtszam(final List<Versenyzo> versenyzok, final int rajtszam){
-		return versenyzok.stream().anyMatch(o -> o.getRajtszam() == rajtszam);
-	}
-	public boolean containsHelyezes(final List<Versenyzo> versenyzok, final int helyezes){
-		return versenyzok.stream().anyMatch(o -> o.getHelyezes() == helyezes);
-	}
-
 	public void versenyzokNevSzerint() {
 		Collections.sort(versenyzok, new compareNev());
 		for (Versenyzo v : versenyzok)
@@ -218,6 +207,17 @@ public class Verseny {
 		Collections.sort(versenyzok, new compareHelyezes());
 		for (Versenyzo v : versenyzok)
 			System.out.println(v);
+	}
+
+	public boolean containsNev(final List<Versenyzo> versenyzok, final String nev){
+		return versenyzok.stream().anyMatch(o -> o.getNev() == nev);
+	}
+
+	public boolean containsRajtszam(final List<Versenyzo> versenyzok, final int rajtszam){
+		return versenyzok.stream().anyMatch(o -> o.getRajtszam() == rajtszam);
+	}
+	public boolean containsHelyezes(final List<Versenyzo> versenyzok, final int helyezes){
+		return versenyzok.stream().anyMatch(o -> o.getHelyezes() == helyezes);
 	}
 
 	public static void main(String[] args) {
