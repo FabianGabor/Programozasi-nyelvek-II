@@ -1,5 +1,6 @@
 import com.google.common.collect.Iterables;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -55,22 +56,27 @@ public class Verseny {
 
 	@Override
 	public String toString() {
+		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+
 		return "Verseny{" +
 				"\n\tElnevezes:\t" + elnevezes +
 				"\n\tIdopont: \t" + idopont.format(this.getFormatterDateTime()) +
-				"\n}";
+				"\n}" +
+				"stackTraceElements" + stackTraceElements[0].getClassLoaderName();
 	}
 
 	public void versenyNevIdopontMegadasa() {
 		Scanner s = new Scanner(System.in);
 
 		System.out.println("Verseny neve:");
-		this.setElnevezes(s.nextLine());
+		//this.setElnevezes(s.nextLine());
+		this.setElnevezes("Teszt verseny");
 		System.out.println("Verseny idopontja (éééé.hh.nn. óó:pp):");
 
 		LocalDateTime formatDateTime = null;
 		while (formatDateTime == null) {
-			String date = s.nextLine();
+			//String date = s.nextLine();
+			String date = "2020.06.21. 09:00";
 			try {
 				formatDateTime = LocalDateTime.parse(date, formatterDateTime);
 			} catch (Exception e) {
@@ -184,6 +190,16 @@ public class Verseny {
 			System.out.println(v);
 	}
 
+	public void Mentes() {
+		Filekezeles file = new Filekezeles();
+		try {
+			file.write(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Hiba a mentés során!");
+		}
+	}
+
 	public boolean containsNev(final List<Versenyzo> versenyzok, final String nev){
 		return versenyzok.stream().anyMatch(o -> o.getNev() == nev);
 	}
@@ -232,10 +248,5 @@ public class Verseny {
 			helyezes = s.nextInt();
 		}
 		return helyezes;
-	}
-
-	public static void main(String[] args) {
-		Verseny verseny = new Verseny();
-		System.out.println(verseny);
 	}
 }

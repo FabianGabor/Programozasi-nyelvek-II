@@ -1,0 +1,9 @@
+Teszt verseny
+2020.06.21. 09:00
+[aaa
+	 rajtszam: 1
+	 helyezes: 1
+, bbb
+	 rajtszam: 2
+	 helyezes: 2
+]
