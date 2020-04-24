@@ -9,7 +9,10 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.channels.OverlappingFileLockException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.StringTokenizer;
+import java.util.stream.Collectors;
 
 
 public class Filekezeles {
@@ -41,10 +44,15 @@ public class Filekezeles {
         channel.close();
     }
 
+    public List<String> getTokens(String str) {
+        return Collections.list(new StringTokenizer(str, ";")).stream()
+                .map(token -> (String) token)
+                .collect(Collectors.toList());
+    }
+
     public Verseny read() {
         Verseny verseny = new Verseny();
         List<Versenyzo> versenyzok = new ArrayList<>();
-
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 
@@ -57,10 +65,15 @@ public class Filekezeles {
                 Versenyzo versenyzo = new Versenyzo();
 
                 String[] versenyzoStr = line.split(";");
-
                 versenyzo.setNev(versenyzoStr[0]);
                 versenyzo.setRajtszam(Integer.parseInt(versenyzoStr[1]));
                 versenyzo.setHelyezes(Integer.parseInt(versenyzoStr[2]));
+
+
+                List<String> tokens = this.getTokens(line);
+                versenyzo.setNev(tokens.get(0));;
+                versenyzo.setRajtszam(Integer.parseInt(tokens.get(1)));
+                versenyzo.setHelyezes(Integer.parseInt(tokens.get(2)));
 
                 versenyzok.add(versenyzo);
             }
