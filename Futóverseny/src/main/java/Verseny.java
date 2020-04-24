@@ -44,13 +44,18 @@ public class Verseny {
 
 	public void setIdopont(String date) {
 		Scanner s = new Scanner(System.in);
-
 		LocalDateTime formatDateTime = null;
-		formatDateTime = LocalDateTime.parse(date, formatterDateTime);
+
+		//date = "2020.06.21. 09:00"; // helyes datum
+
+		try {
+			formatDateTime = LocalDateTime.parse(date, formatterDateTime);
+		} catch (Exception e) {
+			System.out.println("Rossz időpont formátum! Add meg újra az időpontot (éééé.hh.nn. óó:pp):");
+		}
 
 		while (formatDateTime == null) {
 			date = s.nextLine();
-			//date = "2020.06.21. 09:00";
 			try {
 				formatDateTime = LocalDateTime.parse(date, formatterDateTime);
 			} catch (Exception e) {
