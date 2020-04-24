@@ -1,4 +1,4 @@
-import com.google.common.collect.Iterables;
+//import com.google.common.collect.Iterables;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -121,6 +121,8 @@ public class Verseny {
 
 		versenyzok.add(versenyzo);
 
+		/*
+		Google Guava library hasznalata:
 		try {
 			//System.out.println(Class.forName("com.google.common.collect.Iterables FOUND"));
 			Iterable<Versenyzo> lastElement = Iterables.getLast(versenyzok, null);
@@ -130,6 +132,9 @@ public class Verseny {
 			Versenyzo lastElement = versenyzok.get(versenyzok.size() - 1);
 			System.out.println("Felvittem:\n" + lastElement);
 		}
+		 */
+		Versenyzo lastElement = versenyzok.get(versenyzok.size() - 1);
+		System.out.println("Felvittem:\n" + lastElement);
 	}
 
 	public int keresesNevSzerint(String nev) {
@@ -197,6 +202,32 @@ public class Verseny {
 		}
 	}
 
+	public void versenyzoTorlese() {
+		Scanner s = new Scanner(System.in);
+		String nev;
+		boolean letezett = true;
+
+		System.out.println("Versenyző neve:");
+		nev = s.nextLine();
+
+		try {
+			Versenyzo v = versenyzok.get(keresesNevSzerint(nev));
+			versenyzok.remove(v);
+		} catch (Exception ex) {
+			letezett = false;
+			System.out.println("Nem található versenyző ilyen névvel.");
+		}
+		finally {
+			try {
+				Versenyzo v = versenyzok.get(keresesNevSzerint(nev));
+			}
+			catch (NoSuchElementException e) {
+				if (letezett)
+					System.out.println("Sikeresen törölve.");
+			}
+		}
+	}
+
 	public void versenyzokNevSzerint() {
 		Collections.sort(versenyzok, new compareNev());
 		for (Versenyzo v : versenyzok)
@@ -249,6 +280,7 @@ public class Verseny {
 
 		StringBuilder content;
 		try (BufferedReader reader = new BufferedReader(new FileReader("MOCK_DATA.txt"))) {
+			// MOCK_DATA : https://www.mockaroo.com/
 			String line;
 			int i=0;
 
