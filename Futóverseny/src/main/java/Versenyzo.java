@@ -54,8 +54,8 @@ public class Versenyzo implements Serializable, Comparable<Versenyzo>, Iterable<
 	public String toString() {
 		return
 				nev +
-						"\n\t rajtszam: " + rajtszam +
-						"\n\t helyezes: " + helyezes +
+						"\n\t Rajtszám: " + rajtszam +
+						"\n\t Helyezés: " + helyezes +
 						'\n';
 	}
 
