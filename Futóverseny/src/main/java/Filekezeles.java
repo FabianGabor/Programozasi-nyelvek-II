@@ -9,10 +9,12 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.channels.OverlappingFileLockException;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.List;
+
 
 public class Filekezeles {
-    File file = new File("verseny.txt");
+    String filename = "verseny.txt";
+    File file = new File(filename);
 
     public void write(Verseny verseny) throws IOException {
         RandomAccessFile stream = new RandomAccessFile(file, "rw");
@@ -29,7 +31,8 @@ public class Filekezeles {
 
         bw.write(verseny.getElnevezes() + "\n");
         bw.write(verseny.getIdopont().format(verseny.getFormatterDateTime()) + "\n");
-        bw.write(verseny.getVersenyzok().toString());
+        for (Versenyzo v : verseny.getVersenyzok())
+            bw.write(v.getNev() + ";" + v.getRajtszam() + ";" + v.getHelyezes() + "\n");
 
         bw.close();
         lock.release();
@@ -38,57 +41,40 @@ public class Filekezeles {
         channel.close();
     }
 
-/*
-    public void writeToFile (Data data) {
-
-        try {
-            out = new DataOutputStream(new FileOutputStream(file, true));
-
-            out.writeUTF(data.datum);
-            out.writeDouble(data.reggeliHomerseklet);
-            out.writeDouble(data.deliHomerseklet);
-            out.writeDouble(data.estiHomerseklet);
-
-            out.flush();
-            out.close();
-
-        } catch (FileNotFoundException e) {
-            System.out.println("File nem letezik!");
-        } catch (IOException e) {
-            System.out.println("IO hiba!");
-        } finally {
-
-        }
-    }
-    public ArrayList<Data> readFromFile () {
-        ArrayList<Data> data = new ArrayList<Data>();
+    public Verseny read() {
+        Verseny verseny = new Verseny();
+        List<Versenyzo> versenyzok = new ArrayList<>();
 
 
-        try {
-            in = new DataInputStream(new FileInputStream(file));
-            boolean eof = false;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 
-            while (!eof) {
-                Data obj = new Data();
-                try {
-                    obj.setDatum(in.readUTF());
-                    obj.setReggeliHomerseklet(in.readDouble());
-                    obj.setDeliHomerseklet(in.readDouble());
-                    obj.setEstiHomerseklet(in.readDouble());
+            verseny.setElnevezes(reader.readLine());
+            verseny.setIdopont(reader.readLine());
 
-                    data.add(obj);
-                } catch (EOFException e) {
-                    eof = true;
-                }
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                Versenyzo versenyzo = new Versenyzo();
+
+                String[] versenyzoStr = line.split(";");
+
+                versenyzo.setNev(versenyzoStr[0]);
+                versenyzo.setRajtszam(Integer.parseInt(versenyzoStr[1]));
+                versenyzo.setHelyezes(Integer.parseInt(versenyzoStr[2]));
+
+                versenyzok.add(versenyzo);
             }
+
+            verseny.setVersenyzok(versenyzok);
+
         } catch (FileNotFoundException e) {
-            System.out.println("File nem letezik!");
+            e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("IO hiba!");
+            e.printStackTrace();
         }
 
-        return data;
+        return verseny;
     }
 
- */
+    //public List<Versenyzo>
 }
