@@ -1,9 +1,13 @@
 import com.google.common.collect.Iterables;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Verseny {
@@ -38,8 +42,23 @@ public class Verseny {
 		return idopont;
 	}
 
-	public void setIdopont(LocalDateTime idopont) {
-		this.idopont = idopont;
+	public void setIdopont(String date) {
+		Scanner s = new Scanner(System.in);
+
+		LocalDateTime formatDateTime = null;
+		formatDateTime = LocalDateTime.parse(date, formatterDateTime);
+
+		while (formatDateTime == null) {
+			date = s.nextLine();
+			//date = "2020.06.21. 09:00";
+			try {
+				formatDateTime = LocalDateTime.parse(date, formatterDateTime);
+			} catch (Exception e) {
+				System.out.println("Rossz időpont formátum! Add meg újra az időpontot (éééé.hh.nn. óó:pp):");
+			}
+		}
+
+		this.idopont = formatDateTime;
 	}
 
 	public DateTimeFormatter getFormatterDateTime() {
@@ -56,46 +75,34 @@ public class Verseny {
 
 	@Override
 	public String toString() {
-		StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+		String toString;
 
-		return "Verseny{" +
-				"\n\tElnevezes:\t" + elnevezes +
-				"\n\tIdopont: \t" + idopont.format(this.getFormatterDateTime()) +
-				"\n}" +
-				"stackTraceElements" + stackTraceElements[0].getClassLoaderName();
+		toString = "Elnevezes:\t" + elnevezes + "\n" +
+					"Idopont: \t" + idopont.format(this.getFormatterDateTime()) + "\n";
+
+		for (Versenyzo v : versenyzok)
+			toString += v.toString();
+
+		return toString;
 	}
 
 	public void versenyNevIdopontMegadasa() {
 		Scanner s = new Scanner(System.in);
 
 		System.out.println("Verseny neve:");
-		//this.setElnevezes(s.nextLine());
-		this.setElnevezes("Teszt verseny");
+		this.setElnevezes(s.nextLine());
+		//this.setElnevezes("Teszt verseny");
 		System.out.println("Verseny idopontja (éééé.hh.nn. óó:pp):");
+		String date = s.nextLine();
+		//String date = "2020.06.21. 09:00";
 
-		LocalDateTime formatDateTime = null;
-		while (formatDateTime == null) {
-			//String date = s.nextLine();
-			String date = "2020.06.21. 09:00";
-			try {
-				formatDateTime = LocalDateTime.parse(date, formatterDateTime);
-			} catch (Exception e) {
-				System.out.println("Rossz időpont formátum! Add meg újra az időpontot (éééé.hh.nn. óó:pp):");
-			}
-		}
-
-		this.setIdopont( formatDateTime );
+		this.setIdopont( date );
 		System.out.println(this);
 	}
 
 	public void versenyzoFelvitele() {
-		//Versenyzo versenyzo = new Versenyzo();
-		Versenyzo versenyzo = new Versenyzo("aaa", 1, 1);
-		versenyzok.add(versenyzo);
-		versenyzo = new Versenyzo("bbb", 2, 2);
-		versenyzok.add(versenyzo);
+		Versenyzo versenyzo = new Versenyzo();
 
-		/*
 		Scanner s = new Scanner(System.in);
 
 		System.out.println("Versenyző neve:");
@@ -108,13 +115,13 @@ public class Verseny {
 		versenyzo.setHelyezes(helyezesInput());
 
 		versenyzok.add(versenyzo);
-		 */
+
 		try {
-			//System.out.println(Class.forName("com.google.common.collect.Iterables"));
+			//System.out.println(Class.forName("com.google.common.collect.Iterables FOUND"));
 			Iterable<Versenyzo> lastElement = Iterables.getLast(versenyzok, null);
 			System.out.println("Felvittem:\n" + lastElement);
 		} catch(Exception e) {
-			//System.out.println("com.google.common.collect.Iterables MISS");
+			//System.out.println("com.google.common.collect.Iterables MISSING");
 			Versenyzo lastElement = versenyzok.get(versenyzok.size() - 1);
 			System.out.println("Felvittem:\n" + lastElement);
 		}
@@ -199,6 +206,52 @@ public class Verseny {
 			System.out.println("Hiba a mentés során!");
 		}
 	}
+
+	public void Betoltes() {
+		Filekezeles file = new Filekezeles();
+		Verseny versenytmp;
+		versenytmp = file.read();
+
+		this.setElnevezes(versenytmp.getElnevezes());
+		this.setIdopont(versenytmp.getIdopont().format(getFormatterDateTime()));
+		this.setVersenyzok(versenytmp.getVersenyzok());
+
+		System.out.println(this);
+	}
+
+
+	public void RandomVersenyzok() {
+		List<Integer> rajtszam = IntStream.rangeClosed(1, 99).boxed().collect(Collectors.toList());
+		List<Integer> helyezes = IntStream.rangeClosed(1, 99).boxed().collect(Collectors.toList());
+
+		Collections.shuffle(rajtszam);
+		Collections.shuffle(helyezes);
+
+		List<Versenyzo> versenyzok = new ArrayList<>();
+
+		StringBuilder content;
+		try (BufferedReader reader = new BufferedReader(new FileReader("MOCK_DATA.txt"))) {
+			String line;
+			int i=0;
+
+			while ((line = reader.readLine()) != null) {
+				Versenyzo versenyzo = new Versenyzo();
+
+				versenyzo.setNev(line);
+				versenyzo.setRajtszam(rajtszam.get(i));
+				versenyzo.setHelyezes(helyezes.get(i++));
+
+				versenyzok.add(versenyzo);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		this.setVersenyzok(versenyzok);
+	}
+
 
 	public boolean containsNev(final List<Versenyzo> versenyzok, final String nev){
 		return versenyzok.stream().anyMatch(o -> o.getNev() == nev);
