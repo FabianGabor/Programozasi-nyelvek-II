@@ -1,3 +1,9 @@
+/*
+ * Fábián Gábor
+ * CXNU8T
+ * https://github.com/FabianGabor/Programozasi-nyelvek-II/tree/master/Fut%C3%B3verseny
+ */
+
 public class Futoverseny {
 	Verseny verseny = new Verseny();
 
