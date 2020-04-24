@@ -5,6 +5,7 @@ public class Futoverseny {
 		Menu menu = new Menu();
 		menu.addItem(new MenuItem("A verseny nevének és időpontjának megadása", verseny, "versenyNevIdopontMegadasa"));
 		menu.addItem(new MenuItem("Versenyző felvitele", verseny, "versenyzoFelvitele"));
+		menu.addItem(new MenuItem("Random versenyzők generálása", verseny, "RandomVersenyzok"));
 		menu.addItem(new MenuItem("Versenyző adatainak módosítása", verseny, "versenyzoAdatmodositas"));
 		menu.addItem(new MenuItem("Versenyző keresése", verseny, "versenyzoKereses"));
 		menu.addItem(new MenuItem("Versenyző törlése", verseny, "versenyzoTorlese"));
