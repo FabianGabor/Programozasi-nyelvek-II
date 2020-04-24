@@ -64,11 +64,14 @@ public class Filekezeles {
             while ((line = reader.readLine()) != null) {
                 Versenyzo versenyzo = new Versenyzo();
 
+                /*
+                // Nem volt egyértelmű, hogy így is megoldható-e vagy csak Scanner/StringTokkenizer-rel vagy esetleg String split method-dal is
+
                 String[] versenyzoStr = line.split(";");
                 versenyzo.setNev(versenyzoStr[0]);
                 versenyzo.setRajtszam(Integer.parseInt(versenyzoStr[1]));
                 versenyzo.setHelyezes(Integer.parseInt(versenyzoStr[2]));
-
+                 */
 
                 List<String> tokens = this.getTokens(line);
                 versenyzo.setNev(tokens.get(0));;
