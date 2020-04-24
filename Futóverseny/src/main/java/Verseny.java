@@ -139,16 +139,29 @@ public class Verseny {
 		return index.getAsInt();
 	}
 
+	public List<Versenyzo> keresesNevSzerintPart(String nev) {
+		List<Versenyzo> talalatok = new ArrayList<>();
+		for (int i=0; i< versenyzok.size(); i++) {
+			if (versenyzok.get(i).getNev().matches("(.*)" + nev + "(.*)"))
+				talalatok.add(versenyzok.get(i));
+		}
+		return  talalatok;
+	}
+
 	public void versenyzoKereses() {
 		Scanner s = new Scanner(System.in);
 		String nev;
 
-		System.out.println("Versenyzo neve:");
+		System.out.println("Versenyzo neve (részleges egyezés is lehet, pl. \"Drew\"):");
 		nev = s.nextLine();
 
 		try {
-			Versenyzo v = versenyzok.get(keresesNevSzerint(nev));
-			System.out.println(v);
+			List<Versenyzo> talalatok = keresesNevSzerintPart(nev);
+			for (Versenyzo v : talalatok)
+				System.out.println(v);
+
+			//Versenyzo v = versenyzok.get(keresesNevSzerintPart(nev));
+			//System.out.println(v);
 		} catch (Exception e) {
 			System.out.println("Nem található versenyző ilyen névvel.");
 		}
