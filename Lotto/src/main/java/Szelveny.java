@@ -5,33 +5,39 @@
  */
 
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Szelveny {
-    private int[] valasztottSzamok = new int[5];
+    //private int[] valasztottSzamok = new int[5];
+    private Set<Integer> valasztottSzamok =  new TreeSet<>();
 
     public Szelveny() {}
 
-    public Szelveny(int[] valasztottSzamok) {
+    //public Szelveny(int[] valasztottSzamok)
+    public Szelveny(Set<Integer> valasztottSzamok) {
         this.valasztottSzamok = valasztottSzamok;
     }
 
-    public int[] getValasztottSzamok() {
+    //public int[] getValasztottSzamok() {
+    public Set<Integer> getValasztottSzamok() {
         return valasztottSzamok;
     }
 
-    private void setValasztottSzamok(int[] valasztottSzamok) {
+    //private void setValasztottSzamok(int[] valasztottSzamok) {
+    public void setValasztottSzamok(Set<Integer> valasztottSzamok) {
         this.valasztottSzamok = valasztottSzamok;
     }
 
-    public static boolean benneVan(final int[] arr, final int key) {
-        return Arrays.stream(arr).anyMatch(i -> i == key);
+    //public static boolean benneVan(final int[] arr, final int key) {
+    public static boolean benneVan(final Set<Integer> set, final int key) {
+        //return Arrays.stream(arr).anyMatch(i -> i == key);
+        return set.contains(key);
     }
 
     public void kitoltes () {
-        int[] szamok = new int[5];
-        Arrays.fill(szamok, Integer.MIN_VALUE); // esetleges 0 input eseten ne azt a hibat adja, hogy mar valasztva volt
+        //int[] szamok = new int[5];
+        Set<Integer> szamok = new TreeSet<>();
+        //Arrays.fill(szamok, Integer.MIN_VALUE); // esetleges 0 input eseten ne azt a hibat adja, hogy mar valasztva volt
 
         Scanner s = new Scanner(System.in);
         System.out.println("Kerem az 5 szamot:");
@@ -49,16 +55,23 @@ public class Szelveny {
                 szam = Integer.parseInt(s.next());
             }
 
-            szamok[i] = szam;
+            //szamok[i] = szam;
+            szamok.add(szam);
         }
-        Arrays.sort(szamok);
+        //Arrays.sort(szamok);
         this.setValasztottSzamok(szamok);
         System.out.println(this.toString());
     }
 
     @Override
     public String toString() {
-        return "Valasztott szamok: " + Arrays.toString(this.getValasztottSzamok());
+        //return "Valasztott szamok: " + Arrays.toString(this.getValasztottSzamok());
+        Iterator<Integer> iterator = this.getValasztottSzamok().iterator();
+        String s = "";
+        while (iterator.hasNext()) {
+            s += iterator.next() + " ";
+        }
+        return "Valasztott szamok: " + s;
     }
 
     /*
