@@ -22,5 +22,16 @@ public class Halmaz {
 		for (Integer i:halmaz) {
 			System.out.println(i);
 		}
+
+		Set<Double> rendezett =  new TreeSet<>();
+		rendezett.add(3.14);
+		rendezett.add(-3.14);
+		rendezett.add(100.56);
+		rendezett.add(3.0);
+
+		Iterator<Double> iterator = rendezett.iterator();
+		while (iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
 	}
 }
