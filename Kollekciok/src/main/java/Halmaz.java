@@ -1,7 +1,4 @@
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /*******************************************************************************
  * Fábián Gábor
@@ -12,16 +9,20 @@ import java.util.TreeSet;
 
 public class Halmaz {
 	public static void main(String[] args) {
-		Set<Integer> halmaz = new HashSet<>();
-		halmaz.add(5);
-		halmaz.add(-55);
-		halmaz.add(20);
-		halmaz.add(20);
-		halmaz.add(3);
+		Set<Double> halmaz = new HashSet<>();
 
-		for (Integer i:halmaz) {
+		System.out.println("HashSet:");
+		halmaz.add(5.0);
+		halmaz.add(-55.0);
+		halmaz.add(20.0);
+		halmaz.add(20.0);
+		halmaz.add(3.0);
+
+		for (Double i:halmaz) {
 			System.out.println(i);
 		}
+
+		System.out.println("TreeSet:");
 
 		Set<Double> rendezett =  new TreeSet<>();
 		rendezett.add(3.14);
@@ -33,5 +34,13 @@ public class Halmaz {
 		while (iterator.hasNext()) {
 			System.out.println(iterator.next());
 		}
+
+		System.out.println("Metszet:");
+
+		rendezett.retainAll(halmaz);
+		for (Double i:rendezett) {
+			System.out.println(i);
+		}
+
 	}
 }
