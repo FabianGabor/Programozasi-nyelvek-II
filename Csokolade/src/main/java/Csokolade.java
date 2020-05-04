@@ -1,23 +1,8 @@
 public class Csokolade implements CsokiInterface, Comparable<Csokolade> {
-	@Override
-	public void aremeles(int osszeg) {
-		this.setAr(this.getAr() + osszeg);
-	}
-
-	@Override
-	public int akcio(int szazalek) {
-		return (int) (this.getAr() * (1 - szazalek / 100.0));
-	}
-
-	@Override
-	public int compareTo(Csokolade csokolade) {
-		return this.getAr() - csokolade.getAr();
-	}
-
 	public enum Tipus {
 		TEJ, ÉT, FEHÉR;
 
-		public int getKaloria(Tipus t) {
+		public static int getKaloria(Tipus t) {
 			switch (t) {
 				case TEJ:
 					return 535;
@@ -86,12 +71,27 @@ public class Csokolade implements CsokiInterface, Comparable<Csokolade> {
 	}
 
 	@Override
+	public void aremeles(int osszeg) {
+		this.setAr(this.getAr() + osszeg);
+	}
+
+	@Override
+	public int akcio(int szazalek) {
+		return (int) (this.getAr() * (1 - szazalek / 100.0));
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (!(o instanceof Csokolade)) return false;
 		Csokolade csokolade = (Csokolade) o;
 		return getNev().equals(csokolade.getNev()) &&
 				getCsokitipus() == csokolade.getCsokitipus();
+	}
+
+	@Override
+	public int compareTo(Csokolade csokolade) {
+		return this.getAr() - csokolade.getAr();
 	}
 
 	@Override
@@ -103,6 +103,10 @@ public class Csokolade implements CsokiInterface, Comparable<Csokolade> {
 				", toltelek='" + toltelek + '\'' +
 				", ar=" + ar +
 				'}';
+	}
+	
+	public int getOsszKaloria() {
+		return (int)( this.getTomeg() / 100.0 * Tipus.getKaloria(this.getCsokitipus()) );
 	}
 
 	public static void main(String[] args) {
