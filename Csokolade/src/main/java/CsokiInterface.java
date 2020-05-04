@@ -1,4 +1,4 @@
 public interface CsokiInterface {
-	public void aremeles(int mennyiseg);
-	public int akcio(int szazalek);
+	void aremeles(int mennyiseg);
+	void akcio(int szazalek);
 }

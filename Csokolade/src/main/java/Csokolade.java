@@ -1,4 +1,5 @@
 public class Csokolade implements CsokiInterface, Comparable<Csokolade> {
+	@SuppressWarnings("NonAsciiCharacters")
 	public enum Tipus {
 		TEJ, ÉT, FEHÉR;
 
@@ -76,8 +77,8 @@ public class Csokolade implements CsokiInterface, Comparable<Csokolade> {
 	}
 
 	@Override
-	public int akcio(int szazalek) {
-		return (int) (this.getAr() * (1 - szazalek / 100.0));
+	public void akcio(int szazalek) {
+		this.setAr((int) (this.getAr() * (1.0 - szazalek / 100.0)));
 	}
 
 	@Override
