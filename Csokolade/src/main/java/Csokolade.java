@@ -104,12 +104,8 @@ public class Csokolade implements CsokiInterface, Comparable<Csokolade> {
 				", ar=" + ar +
 				'}';
 	}
-	
+
 	public int getOsszKaloria() {
 		return (int)( this.getTomeg() / 100.0 * Tipus.getKaloria(this.getCsokitipus()) );
-	}
-
-	public static void main(String[] args) {
-
 	}
 }
