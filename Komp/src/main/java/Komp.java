@@ -8,6 +8,7 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 	private int betelthely;
 	private int szgkdij;
 	private int tgkdij;
+	private int bevetel;
 	ArrayDeque<Gepjarmu> jarmuvek = new ArrayDeque<Gepjarmu>();
 
 	public Komp() {
@@ -15,6 +16,9 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 		this.maxhely = 10;
 		aktualisTomeg = 0;
 		betelthely = 0;
+		bevetel = 0;
+		szgkdij = 0;
+		tgkdij = 0;
 	}
 
 	public Komp(double teherbiras, int maxhely) {
@@ -31,6 +35,7 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 		this.tgkdij = tgkdij;
 		aktualisTomeg = 0;
 		betelthely = 0;
+		bevetel = 0;
 	}
 
 	public Komp(double maxTomeg, int maxhely, int szgkhelyigeny, int tgkhelyigeny, int szgkdij, int tgkdij, ArrayDeque<Gepjarmu> jarmuvek) {
@@ -41,6 +46,7 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 		this.jarmuvek = jarmuvek;
 		aktualisTomeg = 0;
 		betelthely = 0;
+		bevetel = 0;
 	}
 
 	public double getMaxTomeg() {
@@ -96,19 +102,39 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 	}
 
 	public void setJarmuvek(ArrayDeque<Gepjarmu> jarmuvek) {
-		this.jarmuvek = jarmuvek;
+		if (jarmuvek == null)
+			this.jarmuvek.clear();
+		else
+			this.jarmuvek = jarmuvek;
+	}
+
+	public int getBevetel() {
+		return bevetel;
+	}
+
+	public void setBevetel(int bevetel) {
+		this.bevetel = bevetel;
+	}
+
+	public void kiurit(Komp k) {
+		k.setBevetel(0);
+		k.setBetelthely(0);
+		k.setAktualisTomeg(0);
+		//k.jarmuvek.clear();
+		k.setJarmuvek(null);
 	}
 
 	@Override
 	public String toString() {
-		String komp =  "Komp{" +
-				"\n\tteherbiras=" + maxTomeg +
-				"\n\taktualisTomeg=" + aktualisTomeg +
-				"\n\tmaxhely=" + maxhely +
-				"\n\tbetelthely=" + betelthely +
-				"\n\tszgkdij=" + szgkdij +
-				"\n\ttgkdij=" + tgkdij +
-				"\n\tJarmuvek=\n";
+		String komp =  "Komp {" +
+				"\n\tteherbiras: " + maxTomeg +
+				"\n\taktualisTomeg: " + aktualisTomeg +
+				"\n\tmaxhely: " + maxhely +
+				"\n\tbetelthely: " + betelthely +
+				"\n\tszgkdij: " + szgkdij +
+				"\n\ttgkdij: " + tgkdij +
+				"\n\tbevetel: " + bevetel +
+				"\n\tJarmuvek: \n";
 		if (this.getJarmuvek().isEmpty())
 			komp += "\t\t" + "A komp üres" + "\n";
 		else {
@@ -116,6 +142,7 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 				komp += "\t\t" + g.toString() + "\n";
 			}
 		}
+		komp += "}";
 		return komp;
 	}
 
@@ -131,6 +158,13 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 			if (betelthely + helyigeny <= this.getMaxhely() && gktomeg + aktualisTomeg <= this.getMaxTomeg()) {
 				this.setBetelthely(betelthely + helyigeny);
 				this.setAktualisTomeg(aktualisTomeg + gktomeg);
+
+				if (g instanceof Szemelygk)
+					this.setBevetel(this.getBevetel() + this.getSzgkdij());
+				else if (g instanceof Tehergk)
+					this.setBevetel(this.getBevetel() + this.getTgkdij());
+
+
 				return this.jarmuvek.add(g);
 			}
 		}
@@ -150,7 +184,7 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 	}
 
 	public static void main(String[] args) {
-		Komp komp = new Komp(20,10);
+		Komp komp = new Komp(20,10, 1500, 3000);
 		komp.add(new Szemelygk("VHR-918", 1.4, 1));
 		komp.add(new Szemelygk("NJK-365", 1.5, 4));
 		komp.add(new Szemelygk("KHJ-492", 2.1, 4));
@@ -160,13 +194,15 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 
 		System.out.println(komp.toString());
 
-		//System.out.println(komp.peekFirst());
-		//System.out.println(komp.jarmuvek.peekFirst());
+		System.out.println("A legelső jármű: " + komp.peekFirst() + "\n");
 
 		for (Gepjarmu g:komp.getJarmuvek()) {
 			System.out.println("Lement: " + komp.pop());
 		}
 
+		System.out.println(komp.toString());
+
+		komp.kiurit(komp);
 		System.out.println(komp.toString());
 	}
 }
