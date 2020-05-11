@@ -1,14 +1,14 @@
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class Komp extends LinkedList<Gepjarmu>{
+public class Komp extends ArrayDeque<Gepjarmu> {
 	private double maxTomeg;
 	private double aktualisTomeg;
 	private int maxhely;
 	private int betelthely;
 	private int szgkdij;
 	private int tgkdij;
-	Queue<Gepjarmu> jarmuvek = new LinkedList<Gepjarmu>();
+	ArrayDeque<Gepjarmu> jarmuvek = new ArrayDeque<Gepjarmu>();
 
 	public Komp() {
 		this.maxTomeg = 20;
@@ -33,7 +33,7 @@ public class Komp extends LinkedList<Gepjarmu>{
 		betelthely = 0;
 	}
 
-	public Komp(double maxTomeg, int maxhely, int szgkhelyigeny, int tgkhelyigeny, int szgkdij, int tgkdij, Queue<Gepjarmu> jarmuvek) {
+	public Komp(double maxTomeg, int maxhely, int szgkhelyigeny, int tgkhelyigeny, int szgkdij, int tgkdij, ArrayDeque<Gepjarmu> jarmuvek) {
 		this.maxTomeg = maxTomeg;
 		this.maxhely = maxhely;
 		this.szgkdij = szgkdij;
@@ -95,7 +95,7 @@ public class Komp extends LinkedList<Gepjarmu>{
 		return jarmuvek;
 	}
 
-	public void setJarmuvek(Queue<Gepjarmu> jarmuvek) {
+	public void setJarmuvek(ArrayDeque<Gepjarmu> jarmuvek) {
 		this.jarmuvek = jarmuvek;
 	}
 
@@ -131,6 +131,11 @@ public class Komp extends LinkedList<Gepjarmu>{
 		return false;
 	}
 
+	@Override
+	public Gepjarmu peekFirst() {
+		return this.jarmuvek.peekFirst();
+	}
+
 	public static void main(String[] args) {
 		Komp komp = new Komp(20,10);
 		komp.add(new Szemelygk(1.5, 4));
@@ -138,8 +143,11 @@ public class Komp extends LinkedList<Gepjarmu>{
 		komp.add(new Szemelygk(2.1, 4));
 		komp.add(new Tehergk(5, 1));
 		komp.add(new Tehergk(10, 1));
-
+		komp.add(new Tehergk(7.2, 1));
 
 		System.out.println(komp.toString());
+
+		System.out.println(komp.peekFirst());
+		System.out.println(komp.jarmuvek.peekFirst());
 	}
 }
