@@ -1,8 +1,9 @@
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Komp {
-	private double teherbiras;
+public class Komp extends LinkedList<Gepjarmu>{
+	private double maxTomeg;
+	private double aktualisTomeg;
 	private int maxhely;
 	private int betelthely;
 	private int szgkdij;
@@ -10,29 +11,52 @@ public class Komp {
 	Queue<Gepjarmu> jarmuvek = new LinkedList<Gepjarmu>();
 
 	public Komp() {
+		this.maxTomeg = 20;
+		this.maxhely = 10;
+		aktualisTomeg = 0;
 		betelthely = 0;
 	}
 
 	public Komp(double teherbiras, int maxhely) {
-		this.teherbiras = teherbiras;
+		this.maxTomeg = teherbiras;
 		this.maxhely = maxhely;
+		aktualisTomeg = 0;
 		betelthely = 0;
 	}
 
-	public Komp(double teherbiras, int maxhely, int szgkdij, int tgkdij) {
-		this.teherbiras = teherbiras;
+	public Komp(double maxTomeg, int maxhely, int szgkdij, int tgkdij) {
+		this.maxTomeg = maxTomeg;
 		this.maxhely = maxhely;
 		this.szgkdij = szgkdij;
 		this.tgkdij = tgkdij;
+		aktualisTomeg = 0;
 		betelthely = 0;
 	}
 
-	public double getTeherbiras() {
-		return teherbiras;
+	public Komp(double maxTomeg, int maxhely, int szgkhelyigeny, int tgkhelyigeny, int szgkdij, int tgkdij, Queue<Gepjarmu> jarmuvek) {
+		this.maxTomeg = maxTomeg;
+		this.maxhely = maxhely;
+		this.szgkdij = szgkdij;
+		this.tgkdij = tgkdij;
+		this.jarmuvek = jarmuvek;
+		aktualisTomeg = 0;
+		betelthely = 0;
 	}
 
-	public void setTeherbiras(double teherbiras) {
-		this.teherbiras = teherbiras;
+	public double getMaxTomeg() {
+		return maxTomeg;
+	}
+
+	public void setMaxTomeg(double maxTomeg) {
+		this.maxTomeg = maxTomeg;
+	}
+
+	public double getAktualisTomeg() {
+		return aktualisTomeg;
+	}
+
+	public void setAktualisTomeg(double aktualisTomeg) {
+		this.aktualisTomeg = aktualisTomeg;
 	}
 
 	public int getMaxhely() {
@@ -78,7 +102,8 @@ public class Komp {
 	@Override
 	public String toString() {
 		String komp =  "Komp{" +
-				"\nteherbiras=" + teherbiras +
+				"\nteherbiras=" + maxTomeg +
+				"\naktualisTomeg=" + aktualisTomeg +
 				"\nmaxhely=" + maxhely +
 				"\nbetelthely=" + betelthely +
 				"\nszgkdij=" + szgkdij +
@@ -90,10 +115,27 @@ public class Komp {
 		return komp;
 	}
 
+	@Override
+	public boolean add(Gepjarmu g) {
+		int betelthely = this.getBetelthely();
+		int helyigeny = g.getHelyigeny();
+
+		double aktualisTomeg = this.getAktualisTomeg();
+		double gktomeg = g.getTomeg();
+
+		if ( betelthely + helyigeny <= this.getMaxhely() && gktomeg + aktualisTomeg <= this.getMaxTomeg() ) {
+			this.setBetelthely( betelthely + helyigeny );
+			this.setAktualisTomeg( aktualisTomeg + gktomeg );
+			return this.jarmuvek.add(g);
+		}
+		return false;
+	}
+
 	public static void main(String[] args) {
 		Komp komp = new Komp(20,10);
-		komp.jarmuvek.add( new Szemelygk(1.5, 4));
+		komp.jarmuvek.add(new Szemelygk(1.5, 4));
 		komp.jarmuvek.add(new Tehergk(5, 1));
+		komp.jarmuvek.add(new Tehergk(10, 1));
 
 		System.out.println(komp.toString());
 	}
