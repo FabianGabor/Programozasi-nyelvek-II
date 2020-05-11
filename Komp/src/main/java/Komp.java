@@ -138,6 +138,8 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 
 	@Override
 	public Gepjarmu pop() {
+		this.setBetelthely( this.getBetelthely() - this.peekFirst().getHelyigeny() );
+		this.setAktualisTomeg( this.getAktualisTomeg() - this.peekFirst().getTomeg() );
 		return this.jarmuvek.pop();
 	}
 
