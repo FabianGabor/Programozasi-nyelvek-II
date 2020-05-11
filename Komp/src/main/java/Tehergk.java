@@ -1,15 +1,14 @@
 public class Tehergk extends Gepjarmu {
-	public Tehergk(double tomeg, int letszam) {
-		super(tomeg, letszam);
-		this.setHelyigeny(2);
+	public Tehergk(String rendszam, double tomeg, int letszam) {
+		super(rendszam, tomeg, letszam, 2);
 	}
 
-	public Tehergk(double tomeg, int letszam, int helyigeny) {
-		super(tomeg, letszam, helyigeny);
+	public Tehergk(String rendszam, double tomeg, int letszam, int helyigeny) {
+		super(rendszam, tomeg, letszam, helyigeny);
 	}
 
 	@Override
 	public String toString() {
-		return "Tehergk " + super.toString();
+		return "Tehergépkocsi   " + super.toString();
 	}
 }

@@ -109,24 +109,30 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 				"\n\tszgkdij=" + szgkdij +
 				"\n\ttgkdij=" + tgkdij +
 				"\n\tJarmuvek=\n";
-		for (Gepjarmu g : this.getJarmuvek()) {
-			komp += "\t\t" + g.toString() + "\n";
+		if (this.getJarmuvek().isEmpty())
+			komp += "\t\t" + "A komp üres" + "\n";
+		else {
+			for (Gepjarmu g : this.getJarmuvek()) {
+				komp += "\t\t" + g.toString() + "\n";
+			}
 		}
 		return komp;
 	}
 
 	@Override
 	public boolean add(Gepjarmu g) {
-		int betelthely = this.getBetelthely();
-		int helyigeny = g.getHelyigeny();
+		if (!this.getJarmuvek().contains(g)) {
+			int betelthely = this.getBetelthely();
+			int helyigeny = g.getHelyigeny();
 
-		double aktualisTomeg = this.getAktualisTomeg();
-		double gktomeg = g.getTomeg();
+			double aktualisTomeg = this.getAktualisTomeg();
+			double gktomeg = g.getTomeg();
 
-		if ( betelthely + helyigeny <= this.getMaxhely() && gktomeg + aktualisTomeg <= this.getMaxTomeg() ) {
-			this.setBetelthely( betelthely + helyigeny );
-			this.setAktualisTomeg( aktualisTomeg + gktomeg );
-			return this.jarmuvek.add(g);
+			if (betelthely + helyigeny <= this.getMaxhely() && gktomeg + aktualisTomeg <= this.getMaxTomeg()) {
+				this.setBetelthely(betelthely + helyigeny);
+				this.setAktualisTomeg(aktualisTomeg + gktomeg);
+				return this.jarmuvek.add(g);
+			}
 		}
 		return false;
 	}
@@ -145,19 +151,21 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 
 	public static void main(String[] args) {
 		Komp komp = new Komp(20,10);
-		komp.add(new Szemelygk(1.5, 4));
-		komp.add(new Szemelygk(1.5, 4));
-		komp.add(new Szemelygk(2.1, 4));
-		komp.add(new Tehergk(5, 1));
-		komp.add(new Tehergk(10, 1));
-		komp.add(new Tehergk(7.2, 1));
+		komp.add(new Szemelygk("VHR-918", 1.4, 1));
+		komp.add(new Szemelygk("NJK-365", 1.5, 4));
+		komp.add(new Szemelygk("KHJ-492", 2.1, 4));
+		komp.add(new Tehergk("BUT-854", 5, 1));
+		komp.add(new Tehergk("KNP-245",10, 1));
+		komp.add(new Tehergk("FGI-621",7.2, 1));
 
 		System.out.println(komp.toString());
 
-		System.out.println(komp.peekFirst());
-		System.out.println(komp.jarmuvek.peekFirst());
+		//System.out.println(komp.peekFirst());
+		//System.out.println(komp.jarmuvek.peekFirst());
 
-		System.out.println(komp.pop());
+		for (Gepjarmu g:komp.getJarmuvek()) {
+			System.out.println("Lement: " + komp.pop());
+		}
 
 		System.out.println(komp.toString());
 	}

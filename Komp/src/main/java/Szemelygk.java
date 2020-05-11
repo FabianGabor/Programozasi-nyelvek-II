@@ -1,15 +1,14 @@
 public class Szemelygk extends Gepjarmu {
-	public Szemelygk(double tomeg, int letszam) {
-		super(tomeg, letszam);
-		this.setHelyigeny(1);
+	public Szemelygk(String rendszam, double tomeg, int letszam) {
+		super(rendszam, tomeg, letszam, 1);
 	}
 
-	public Szemelygk(double tomeg, int letszam, int helyigeny) {
-		super(tomeg, letszam, helyigeny);
+	public Szemelygk(String rendszam, double tomeg, int letszam, int helyigeny) {
+		super(rendszam, tomeg, letszam, helyigeny);
 	}
 
 	@Override
 	public String toString() {
-		return "Szemelygk " + super.toString();
+		return "Személygépkocsi " + super.toString();
 	}
 }
