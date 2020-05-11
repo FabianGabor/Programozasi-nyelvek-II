@@ -102,15 +102,15 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 	@Override
 	public String toString() {
 		String komp =  "Komp{" +
-				"\nteherbiras=" + maxTomeg +
-				"\naktualisTomeg=" + aktualisTomeg +
-				"\nmaxhely=" + maxhely +
-				"\nbetelthely=" + betelthely +
-				"\nszgkdij=" + szgkdij +
-				"\ntgkdij=" + tgkdij +
-				"\nJarmuvek=\n";
+				"\n\tteherbiras=" + maxTomeg +
+				"\n\taktualisTomeg=" + aktualisTomeg +
+				"\n\tmaxhely=" + maxhely +
+				"\n\tbetelthely=" + betelthely +
+				"\n\tszgkdij=" + szgkdij +
+				"\n\ttgkdij=" + tgkdij +
+				"\n\tJarmuvek=\n";
 		for (Gepjarmu g : this.getJarmuvek()) {
-			komp += "\t" + g.toString() + "\n";
+			komp += "\t\t" + g.toString() + "\n";
 		}
 		return komp;
 	}
@@ -136,6 +136,11 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 		return this.jarmuvek.peekFirst();
 	}
 
+	@Override
+	public Gepjarmu pop() {
+		return this.jarmuvek.pop();
+	}
+
 	public static void main(String[] args) {
 		Komp komp = new Komp(20,10);
 		komp.add(new Szemelygk(1.5, 4));
@@ -149,5 +154,9 @@ public class Komp extends ArrayDeque<Gepjarmu> {
 
 		System.out.println(komp.peekFirst());
 		System.out.println(komp.jarmuvek.peekFirst());
+
+		System.out.println(komp.pop());
+
+		System.out.println(komp.toString());
 	}
 }
