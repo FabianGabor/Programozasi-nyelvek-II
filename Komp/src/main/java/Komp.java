@@ -133,9 +133,12 @@ public class Komp extends LinkedList<Gepjarmu>{
 
 	public static void main(String[] args) {
 		Komp komp = new Komp(20,10);
-		komp.jarmuvek.add(new Szemelygk(1.5, 4));
-		komp.jarmuvek.add(new Tehergk(5, 1));
-		komp.jarmuvek.add(new Tehergk(10, 1));
+		komp.add(new Szemelygk(1.5, 4));
+		komp.add(new Szemelygk(1.5, 4));
+		komp.add(new Szemelygk(2.1, 4));
+		komp.add(new Tehergk(5, 1));
+		komp.add(new Tehergk(10, 1));
+
 
 		System.out.println(komp.toString());
 	}

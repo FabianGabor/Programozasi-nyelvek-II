@@ -44,7 +44,7 @@ public class Gepjarmu {
 
 	@Override
 	public String toString() {
-		return "Gepjarmu{" +
+		return "{" +
 				"tomeg=" + tomeg +
 				", letszam=" + letszam +
 				", helyigeny=" + helyigeny +
