@@ -4,6 +4,13 @@ public class Monitor extends Hardware {
 	private int yfelbontas;
 	private boolean led = false;
 
+	public Monitor() {
+	}
+
+	public Monitor(int cikkszam, String megnevezes, int beszerzesiAr) {
+		super(cikkszam, megnevezes, beszerzesiAr);
+	}
+
 	public Monitor(int cikkszam, String megnevezes, int beszerzesiAr, int meret, int xfelbontas, int yfelbontas) {
 		super(cikkszam, megnevezes, beszerzesiAr);
 		this.meret = meret;
@@ -49,5 +56,19 @@ public class Monitor extends Hardware {
 
 	public void setLed(boolean led) {
 		this.led = led;
+	}
+
+	@Override
+	public String toString() {
+		String tmp = (led)?"igen":"nem";
+		return "Monitor" +
+				"\n\tcikkszam:\t\t" + cikkszam +
+				"\n\tmegnevezes:\t\t" + megnevezes +
+				"\n\tbeszerzesiAr:\t" + beszerzesiAr +
+				"\n\tmeret:\t\t\t" + meret +
+				"\n\txfelbontas:\t\t" + xfelbontas +
+				"\n\tyfelbontas:\t\t" + yfelbontas +
+				"\n\tled:\t\t\t" + tmp +
+				"\n";
 	}
 }
