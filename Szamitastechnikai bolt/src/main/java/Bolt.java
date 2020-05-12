@@ -69,10 +69,6 @@ public class Bolt implements BoltInterface{
 				switch (tmp) {
 					case "MONITOR" :
 						{
-							/*
-							Monitor monitor = new Monitor(cikkszam++, scan.next(), Integer.parseInt(scan.next()),
-									Integer.parseInt(scan.next()), Integer.parseInt(scan.next()), Integer.parseInt(scan.next()));
-							 */
 							meret = Integer.parseInt(scan.next());
 							xfelbontas = Integer.parseInt(scan.next());
 							yfelbontas = Integer.parseInt(scan.next());
@@ -109,9 +105,26 @@ public class Bolt implements BoltInterface{
 		}
 	}
 
+	public void vasarlas() {
+		Hardware ezt = new Hardware();
+		vesz(ezt);
+	}
+
+	public void eladas() {
+		int ezt = 0;
+		System.out.println("A(z) " + ezt + " cikkszámú árú " + (elad(ezt)?"el":"nem") + " lett eladva." );
+	}
+
+	public void keresesCikkszamSzerint() {
+		int ezt = 0;
+		Hardware talalat = kerescikkszam(ezt);
+		System.out.println( (talalat == null) ? "Nem létezik " + ezt + " cikkszámú termék." : talalat );
+	}
+
 	@Override
 	public boolean vesz(Hardware ezt) {
-		return false;
+		//beolvas  a billentyűzetről egy megvett hardwer elem adatait. A map-hez hozzáadja az új hardware elemet, a forgótőkéből levonja az eszköz beszerzési árát.
+		return true;
 	}
 
 	@Override
@@ -121,7 +134,7 @@ public class Bolt implements BoltInterface{
 
 	@Override
 	public Hardware kerescikkszam(int ezt) {
-		return null;
+		return this.getArukeszlet().get(ezt);
 	}
 
 	@Override
@@ -158,5 +171,14 @@ public class Bolt implements BoltInterface{
 		bolt.feltolt("src/" + "arukeszlet.txt");
 		System.out.println(bolt.toString());
 		System.out.println("Áruk össz beszerzési értéke: " + arukOsszBeszerzesiErteke(bolt));
+		System.out.println("The set is: "
+				+ bolt.arukeszlet.keySet());
+
+		Menu menu = new Menu();
+		menu.addItem(new MenuItem("Áru vásárlása", bolt , "vasarol"));
+		menu.addItem(new MenuItem("Áru eladása", bolt , "eladas"));
+		menu.addItem(new MenuItem("Keresés cikkszám alapján", bolt , "keresesCikkszamSzerint"));
+
+		menu.execute();
 	}
 }
