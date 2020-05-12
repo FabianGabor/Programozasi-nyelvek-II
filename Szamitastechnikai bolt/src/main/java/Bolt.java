@@ -116,13 +116,19 @@ public class Bolt implements BoltInterface{
 	}
 
 	public void keresesCikkszamSzerint() {
-		int ezt = 0;
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Keresett cikkszám: ");
+		int ezt = scan.nextInt();
+
 		Hardware talalat = kerescikkszam(ezt);
 		System.out.println( (talalat == null) ? "Nem létezik " + ezt + " cikkszámú termék." : talalat );
 	}
 
 	public void keresesMegnevezesSzerint() {
-		String ezt = "Dell";
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Keresett név: ");
+		String ezt = scan.next();
+
 		Hardware talalat = this.getArukeszlet().get( keresmegnevezes(ezt) );
 		System.out.println( (talalat == null) ? "Nem létezik " + ezt + " megnevezésű termék." : talalat );
 	}
