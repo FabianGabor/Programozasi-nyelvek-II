@@ -30,4 +30,36 @@ public class HDD extends Hardware {
 		this.buffer = buffer;
 		this.eleresiIdo = eleresiIdo;
 	}
+
+	public int getKapacitas() {
+		return kapacitas;
+	}
+
+	public void setKapacitas(int kapacitas) {
+		this.kapacitas = kapacitas;
+	}
+
+	public int getFordulatszam() {
+		return fordulatszam;
+	}
+
+	public void setFordulatszam(int fordulatszam) {
+		this.fordulatszam = fordulatszam;
+	}
+
+	public int getBuffer() {
+		return buffer;
+	}
+
+	public void setBuffer(int buffer) {
+		this.buffer = buffer;
+	}
+
+	public double getEleresiIdo() {
+		return eleresiIdo;
+	}
+
+	public void setEleresiIdo(double eleresiIdo) {
+		this.eleresiIdo = eleresiIdo;
+	}
 }
