@@ -4,6 +4,9 @@ public class Hardware implements HardwareInterface {
 	int beszerzesiAr;
 	static double haszonkulcs;
 
+	public Hardware() {
+	}
+
 	public Hardware(int cikkszam, String megnevezes, int beszerzesiAr) {
 		this.cikkszam = cikkszam;
 		this.megnevezes = megnevezes;
