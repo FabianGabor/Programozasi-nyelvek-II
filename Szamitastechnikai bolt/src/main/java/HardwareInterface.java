@@ -1,6 +1,6 @@
 import javax.print.attribute.HashDocAttributeSet;
 
 public interface HardwareInterface {
-	int geteladasiar();
-	int haszon();
+	public int geteladasiar();
+	public int haszon();
 }
