@@ -121,6 +121,12 @@ public class Bolt implements BoltInterface{
 		System.out.println( (talalat == null) ? "Nem létezik " + ezt + " cikkszámú termék." : talalat );
 	}
 
+	public void keresesMegnevezesSzerint() {
+		String ezt = "Dell";
+		Hardware talalat = this.getArukeszlet().get( keresmegnevezes(ezt) );
+		System.out.println( (talalat == null) ? "Nem létezik " + ezt + " megnevezésű termék." : talalat );
+	}
+
 	@Override
 	public boolean vesz(Hardware ezt) {
 		//beolvas  a billentyűzetről egy megvett hardwer elem adatait. A map-hez hozzáadja az új hardware elemet, a forgótőkéből levonja az eszköz beszerzési árát.
@@ -139,6 +145,11 @@ public class Bolt implements BoltInterface{
 
 	@Override
 	public int keresmegnevezes(String ezt) {
+		for (Integer i : this.getArukeszlet().keySet()) {
+			if ( this.getArukeszlet().get(i).megnevezes.contains(ezt) ) // parcialis egyezes
+			//if ( this.getArukeszlet().get(i).megnevezes.equalsIgnoreCase(ezt) )
+				return i;
+		}
 		return 0;
 	}
 
@@ -178,6 +189,7 @@ public class Bolt implements BoltInterface{
 		menu.addItem(new MenuItem("Áru vásárlása", bolt , "vasarol"));
 		menu.addItem(new MenuItem("Áru eladása", bolt , "eladas"));
 		menu.addItem(new MenuItem("Keresés cikkszám alapján", bolt , "keresesCikkszamSzerint"));
+		menu.addItem(new MenuItem("Keresés megnevezés szerint", bolt , "keresesMegnevezesSzerint"));
 
 		menu.execute();
 	}
