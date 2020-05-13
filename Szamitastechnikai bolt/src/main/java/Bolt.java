@@ -1,4 +1,3 @@
-import javax.print.attribute.HashDocAttributeSet;
 import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -39,7 +38,7 @@ public class Bolt extends Hardware implements BoltInterface {
 
 	@Override
 	public void feltolt(String allomanynev) {
-		SortedMap<Integer, Hardware> arukeszlet = new TreeMap<Integer, Hardware>();
+		SortedMap<Integer, Hardware> arukeszlet = new TreeMap<>();
 
 		int cikkszam = 1;
 
@@ -109,6 +108,7 @@ public class Bolt extends Hardware implements BoltInterface {
 	public void vasarlas() {
 		Scanner scan = new Scanner(System.in);
 		int tipus = 0;
+		Hardware ezt = new Hardware();
 
 		for (Enum info : Hardware.tipus.values()) {
 			System.out.println(info.ordinal() + 1 + ". " + info);
@@ -135,31 +135,15 @@ public class Bolt extends Hardware implements BoltInterface {
 		switch (tipus) {
 			case 1:
 			{
-				Monitor monitor = new Monitor().beolvas(cikkszam);
-				System.out.println(monitor);
-				if (this.forgotoke >= monitor.beszerzesiAr) {
-					this.arukeszlet.put(monitor.getCikkszam(), monitor);
-					this.forgotoke -= monitor.beszerzesiAr;
-				}
-				else
-					System.out.println("Nem áll elég forgótőke rendelkezésre!");
+				ezt = new Monitor().beolvas(cikkszam);
 				break;
 			}
 			case 2:
 			{
-				HDD hdd = new HDD().beolvas(cikkszam);
-				System.out.println(hdd);
-				if (this.forgotoke >= hdd.beszerzesiAr) {
-					this.arukeszlet.put(hdd.getCikkszam(), hdd);
-					this.forgotoke -= hdd.beszerzesiAr;
-				}
-				else
-					System.out.println("Nem áll elég forgótőke rendelkezésre!");
+				ezt = new HDD().beolvas(cikkszam);
 				break;
 			}
 		}
-
-		Hardware ezt = new Hardware();
 		vesz(ezt);
 	}
 
@@ -194,15 +178,22 @@ public class Bolt extends Hardware implements BoltInterface {
 
 	public void boltArukeszlete() {
 		System.out.println(this.toString());
+		System.out.println("Árucikkek mennyisége: " + this.arukeszlet.values().size());
+		System.out.println("Forgótőke: " + this.forgotoke);
 		System.out.println("Áruk össz beszerzési értéke: " + arukOsszBeszerzesiErteke(this));
-		System.out.println("Áruk cikkszámai: "
-				+ this.arukeszlet.keySet());
+		System.out.println("Áruk cikkszámai: " + this.arukeszlet.keySet());
 	}
 
 	@Override
 	public boolean vesz(Hardware ezt) {
-		//beolvas  a billentyűzetről egy megvett hardwer elem adatait. A map-hez hozzáadja az új hardware elemet, a forgótőkéből levonja az eszköz beszerzési árát.
-		return true;
+		if (this.forgotoke >= ezt.beszerzesiAr) {
+			this.arukeszlet.put(ezt.getCikkszam(), ezt);
+			this.forgotoke -= ezt.beszerzesiAr;
+			return true;
+		}
+
+		System.out.println("Nem áll elég forgótőke rendelkezésre!");
+		return false;
 	}
 
 	@Override
@@ -265,7 +256,7 @@ public class Bolt extends Hardware implements BoltInterface {
 	public static void main(String[] args) {
 		Bolt bolt = new Bolt(1000000);
 		bolt.feltolt("src/" + "arukeszlet.txt");
-		
+
 		Menu menu = new Menu();
 		menu.addItem(new MenuItem("Áru vásárlása", bolt , "vasarlas"));
 		menu.addItem(new MenuItem("Áru eladása", bolt , "eladas"));
