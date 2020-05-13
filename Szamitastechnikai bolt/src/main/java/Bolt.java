@@ -1,10 +1,11 @@
+import javax.print.attribute.HashDocAttributeSet;
 import java.io.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public class Bolt implements BoltInterface{
+public class Bolt extends Hardware implements BoltInterface {
 	SortedMap<Integer, Hardware> arukeszlet;
 	int forgotoke;
 
@@ -39,8 +40,7 @@ public class Bolt implements BoltInterface{
 	@Override
 	public void feltolt(String allomanynev) {
 		SortedMap<Integer, Hardware> arukeszlet = new TreeMap<Integer, Hardware>();
-		//Monitor monitor = new Monitor();
-		//HDD hdd = new HDD();
+
 		int cikkszam = 1;
 
 		String megnevezes;
@@ -137,14 +137,24 @@ public class Bolt implements BoltInterface{
 			{
 				Monitor monitor = new Monitor().beolvas(cikkszam);
 				System.out.println(monitor);
-				this.arukeszlet.put(monitor.getCikkszam(), monitor);
+				if (this.forgotoke >= monitor.beszerzesiAr) {
+					this.arukeszlet.put(monitor.getCikkszam(), monitor);
+					this.forgotoke -= monitor.beszerzesiAr;
+				}
+				else
+					System.out.println("Nem áll elég forgótőke rendelkezésre!");
 				break;
 			}
 			case 2:
 			{
 				HDD hdd = new HDD().beolvas(cikkszam);
 				System.out.println(hdd);
-				this.arukeszlet.put(hdd.getCikkszam(), hdd);
+				if (this.forgotoke >= hdd.beszerzesiAr) {
+					this.arukeszlet.put(hdd.getCikkszam(), hdd);
+					this.forgotoke -= hdd.beszerzesiAr;
+				}
+				else
+					System.out.println("Nem áll elég forgótőke rendelkezésre!");
 				break;
 			}
 		}
@@ -198,6 +208,8 @@ public class Bolt implements BoltInterface{
 	@Override
 	public boolean elad(int ezt) {
 		if (this.arukeszlet.containsKey(ezt)) {
+			System.out.println("Eladási ár: " + this.arukeszlet.get(ezt).geteladasiar());
+			this.forgotoke += this.arukeszlet.get(ezt).geteladasiar();
 			this.arukeszlet.remove(ezt);
 			return true;
 		}
@@ -243,14 +255,21 @@ public class Bolt implements BoltInterface{
 		return str;
 	}
 
+	public void haszonkulcsBeallitas() {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Haszonkulcs százalék:");
+		Hardware.setHaszonkulcs(beolvasDouble() / 100);
+	}
+
+
 	public static void main(String[] args) {
 		Bolt bolt = new Bolt(1000000);
 		bolt.feltolt("src/" + "arukeszlet.txt");
-
-
+		
 		Menu menu = new Menu();
 		menu.addItem(new MenuItem("Áru vásárlása", bolt , "vasarlas"));
 		menu.addItem(new MenuItem("Áru eladása", bolt , "eladas"));
+		menu.addItem(new MenuItem("Haszonkulcs beállítása", bolt , "haszonkulcsBeallitas"));
 		menu.addItem(new MenuItem("Keresés cikkszám alapján", bolt , "keresesCikkszamSzerint"));
 		menu.addItem(new MenuItem("Keresés megnevezés szerint", bolt , "keresesMegnevezesSzerint"));
 		menu.addItem(new MenuItem("Bolt árukészlete", bolt , "boltArukeszlete"));
