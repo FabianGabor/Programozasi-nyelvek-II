@@ -48,7 +48,7 @@ public class Bolt extends Hardware implements BoltInterface {
 		int meret;
 		int xfelbontas;
 		int yfelbontas;
-		boolean led = false;
+		boolean led;
 
 		int kapacitas;
 		int fordulatszam;
@@ -232,18 +232,18 @@ public class Bolt extends Hardware implements BoltInterface {
 
 	@Override
 	public String toString() {
-		String str =
-		"Bolt{" +
-				"\nforgotoke: " + forgotoke +
-				"\narukeszlet: ";
+		StringBuilder str =
+				new StringBuilder("Bolt{" +
+						"\nforgotoke: " + forgotoke +
+						"\narukeszlet: ");
 
 		for (Integer i : arukeszlet.keySet() )
 		{
-			str += "\n" + arukeszlet.get(i).toString();
+			str.append("\n").append(arukeszlet.get(i).toString());
 		}
 
-		str += "\n}";
-		return str;
+		str.append("\n}");
+		return str.toString();
 	}
 
 	public void haszonkulcsBeallitas() {
