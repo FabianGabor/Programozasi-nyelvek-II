@@ -1,3 +1,6 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Hardware implements HardwareInterface {
 	int cikkszam;
 	String megnevezes;
@@ -58,5 +61,33 @@ public class Hardware implements HardwareInterface {
 	@Override
 	public int haszon() {
 		return (int) (this.getBeszerzesiAr() * getHaszonkulcs());
+	}
+
+	public int beolvasInt() {
+		Scanner scan = new Scanner(System.in);
+		int i;
+		while(true) {
+			try {
+				i = scan.nextInt();
+				return i;
+			} catch (InputMismatchException inputMismatchException) {
+				System.out.println("Nem egész szám!");
+				return beolvasInt();
+			}
+		}
+	}
+
+	public double beolvasDouble() {
+		Scanner scan = new Scanner(System.in);
+		double i;
+		while(true) {
+			try {
+				i = scan.nextDouble();
+				return i;
+			} catch (InputMismatchException inputMismatchException) {
+				System.out.println("Nem valós szám!");
+				return beolvasDouble();
+			}
+		}
 	}
 }

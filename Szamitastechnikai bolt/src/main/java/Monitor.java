@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Monitor extends Hardware {
@@ -74,6 +75,8 @@ public class Monitor extends Hardware {
 				"\n";
 	}
 
+
+
 	public Monitor beolvas (int cikkszam) {
 		Scanner scan = new Scanner(System.in);
 		Monitor monitor = new Monitor();
@@ -82,14 +85,19 @@ public class Monitor extends Hardware {
 
 		System.out.println("Megnevezés: ");
 		monitor.setMegnevezes( scan.next() );
+
 		System.out.println("Beszerzési ár: ");
-		monitor.setBeszerzesiAr( scan.nextInt() );
+		monitor.setBeszerzesiAr(beolvasInt());
+
 		System.out.println("Méret: ");
-		monitor.setMeret( scan.nextInt() );
+		monitor.setMeret(beolvasInt());
+
 		System.out.println("X felbontás: ");
-		monitor.setXfelbontas( scan.nextInt() );
+		monitor.setXfelbontas(beolvasInt());
+
 		System.out.println("Y felbontás: ");
-		monitor.setYfelbontas( scan.nextInt() );
+		monitor.setYfelbontas(beolvasInt());
+
 		System.out.println("LED (i/n): ");
 		monitor.setLed( (scan.next().equals("i")) );
 

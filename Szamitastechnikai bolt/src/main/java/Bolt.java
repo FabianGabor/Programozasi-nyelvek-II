@@ -126,18 +126,29 @@ public class Bolt implements BoltInterface{
 				continue;
 			}
 
+		int cikkszam;
+		if (this.arukeszlet.firstKey() > 1)
+			cikkszam = this.arukeszlet.firstKey() - 1;
+		else
+			cikkszam = this.arukeszlet.lastKey() + 1;
+
 		switch (tipus) {
 			case 1:
 			{
-				int cikkszam = this.arukeszlet.lastKey() + 1;
 				Monitor monitor = new Monitor().beolvas(cikkszam);
-
 				System.out.println(monitor);
-
 				this.arukeszlet.put(monitor.getCikkszam(), monitor);
+				break;
+			}
+			case 2:
+			{
+				HDD hdd = new HDD().beolvas(cikkszam);
+				System.out.println(hdd);
+				this.arukeszlet.put(hdd.getCikkszam(), hdd);
+				break;
 			}
 		}
-		
+
 		Hardware ezt = new Hardware();
 		vesz(ezt);
 	}

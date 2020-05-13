@@ -1,3 +1,6 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class HDD extends Hardware {
 	// "Winchester" is a code-name for an HDD introduced by IBM in 1973
 	int kapacitas;
@@ -52,5 +55,27 @@ public class HDD extends Hardware {
 				"\n\tfordulatszam:\t" + fordulatszam +
 				"\n\teleresiIdo:\t\t" + eleresiIdo +
 				"\n";
+	}
+
+
+
+	public HDD beolvas (int cikkszam) {
+		Scanner scan = new Scanner(System.in);
+		HDD hdd = new HDD();
+
+		hdd.setCikkszam(cikkszam);
+
+		System.out.println("Megnevezés: ");
+		hdd.setMegnevezes( scan.next() );
+		System.out.println("Beszerzési ár: ");
+		hdd.setBeszerzesiAr(beolvasInt());
+		System.out.println("Kapacitás: ");
+		hdd.setKapacitas(beolvasInt());
+		System.out.println("Fordulatszám: ");
+		hdd.setFordulatszam(beolvasInt());
+		System.out.println("Elérési idő: ");
+		hdd.setEleresiIdo(beolvasDouble());
+
+		return hdd;
 	}
 }
