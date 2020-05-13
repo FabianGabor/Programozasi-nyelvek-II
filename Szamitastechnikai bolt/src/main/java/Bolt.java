@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -106,12 +107,49 @@ public class Bolt implements BoltInterface{
 	}
 
 	public void vasarlas() {
+		Scanner scan = new Scanner(System.in);
+		int tipus = 0;
+
+		for (Enum info : Hardware.tipus.values()) {
+			System.out.println(info.ordinal() + 1 + ". " + info);
+		}
+
+		while (tipus <= 0 || tipus > Hardware.tipus.values().length)
+			try {
+				System.out.println("Termék típusa:");
+				tipus = scan.nextInt();
+				if (tipus <= 0 || tipus > Hardware.tipus.values().length)
+					System.out.println("Lehetséges válasz: 1–" + Hardware.tipus.values().length);
+			} catch (InputMismatchException inputMismatchException) {
+				System.out.println("Lehetséges válasz: 1–" + Hardware.tipus.values().length);
+				scan.next();
+				continue;
+			}
+
+		switch (tipus) {
+			case 1:
+			{
+				int cikkszam = this.arukeszlet.lastKey() + 1;
+				Monitor monitor = new Monitor().beolvas(cikkszam);
+
+				System.out.println(monitor);
+
+				this.arukeszlet.put(monitor.getCikkszam(), monitor);
+			}
+		}
+		
 		Hardware ezt = new Hardware();
 		vesz(ezt);
 	}
 
 	public void eladas() {
-		int ezt = 0;
+		System.out.println("Eladni kívánt termék cikkszáma:");
+		Scanner scan = new Scanner(System.in);
+		int ezt = scan.nextInt();
+
+		Hardware talalat = kerescikkszam(ezt);
+		System.out.println( (talalat == null) ? "Nem létezik " + ezt + " cikkszámú termék." : talalat );
+
 		System.out.println("A(z) " + ezt + " cikkszámú árú " + (elad(ezt)?"el":"nem") + " lett eladva." );
 	}
 
@@ -133,6 +171,13 @@ public class Bolt implements BoltInterface{
 		System.out.println( (talalat == null) ? "Nem létezik " + ezt + " megnevezésű termék." : talalat );
 	}
 
+	public void boltArukeszlete() {
+		System.out.println(this.toString());
+		System.out.println("Áruk össz beszerzési értéke: " + arukOsszBeszerzesiErteke(this));
+		System.out.println("Áruk cikkszámai: "
+				+ this.arukeszlet.keySet());
+	}
+
 	@Override
 	public boolean vesz(Hardware ezt) {
 		//beolvas  a billentyűzetről egy megvett hardwer elem adatait. A map-hez hozzáadja az új hardware elemet, a forgótőkéből levonja az eszköz beszerzési árát.
@@ -141,6 +186,10 @@ public class Bolt implements BoltInterface{
 
 	@Override
 	public boolean elad(int ezt) {
+		if (this.arukeszlet.containsKey(ezt)) {
+			this.arukeszlet.remove(ezt);
+			return true;
+		}
 		return false;
 	}
 
@@ -186,16 +235,14 @@ public class Bolt implements BoltInterface{
 	public static void main(String[] args) {
 		Bolt bolt = new Bolt(1000000);
 		bolt.feltolt("src/" + "arukeszlet.txt");
-		System.out.println(bolt.toString());
-		System.out.println("Áruk össz beszerzési értéke: " + arukOsszBeszerzesiErteke(bolt));
-		System.out.println("The set is: "
-				+ bolt.arukeszlet.keySet());
+
 
 		Menu menu = new Menu();
-		menu.addItem(new MenuItem("Áru vásárlása", bolt , "vasarol"));
+		menu.addItem(new MenuItem("Áru vásárlása", bolt , "vasarlas"));
 		menu.addItem(new MenuItem("Áru eladása", bolt , "eladas"));
 		menu.addItem(new MenuItem("Keresés cikkszám alapján", bolt , "keresesCikkszamSzerint"));
 		menu.addItem(new MenuItem("Keresés megnevezés szerint", bolt , "keresesMegnevezesSzerint"));
+		menu.addItem(new MenuItem("Bolt árukészlete", bolt , "boltArukeszlete"));
 
 		menu.execute();
 	}

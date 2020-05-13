@@ -4,6 +4,11 @@ public class Hardware implements HardwareInterface {
 	int beszerzesiAr;
 	static double haszonkulcs;
 
+	enum tipus
+	{
+		MONITOR, HDD;
+	}
+
 	public Hardware() {
 	}
 

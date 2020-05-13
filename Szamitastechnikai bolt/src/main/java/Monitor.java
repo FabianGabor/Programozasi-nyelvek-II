@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Monitor extends Hardware {
 	private int meret;
 	private int xfelbontas;
@@ -70,5 +72,27 @@ public class Monitor extends Hardware {
 				"\n\tyfelbontas:\t\t" + yfelbontas +
 				"\n\tled:\t\t\t" + tmp +
 				"\n";
+	}
+
+	public Monitor beolvas (int cikkszam) {
+		Scanner scan = new Scanner(System.in);
+		Monitor monitor = new Monitor();
+
+		monitor.setCikkszam(cikkszam);
+
+		System.out.println("Megnevezés: ");
+		monitor.setMegnevezes( scan.next() );
+		System.out.println("Beszerzési ár: ");
+		monitor.setBeszerzesiAr( scan.nextInt() );
+		System.out.println("Méret: ");
+		monitor.setMeret( scan.nextInt() );
+		System.out.println("X felbontás: ");
+		monitor.setXfelbontas( scan.nextInt() );
+		System.out.println("Y felbontás: ");
+		monitor.setYfelbontas( scan.nextInt() );
+		System.out.println("LED (i/n): ");
+		monitor.setLed( (scan.next().equals("i")) );
+
+		return monitor;
 	}
 }
