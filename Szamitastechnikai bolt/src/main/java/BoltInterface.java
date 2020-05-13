@@ -1,5 +1,3 @@
-import java.util.SortedMap;
-
 public interface BoltInterface {
 	void feltolt(String allomanynev);
 	boolean vesz(Hardware ezt); //beolvas  a billentyűzetről egy megvett hardwer elem adatait. A map-hez hozzáadja az új hardware elemet, a forgótőkéből levonja az eszköz beszerzési árát.

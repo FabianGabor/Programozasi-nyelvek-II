@@ -9,7 +9,7 @@ public class Hardware implements HardwareInterface {
 
 	enum tipus
 	{
-		MONITOR, HDD;
+		MONITOR, HDD
 	}
 
 	public Hardware() {
@@ -60,7 +60,7 @@ public class Hardware implements HardwareInterface {
 
 	@Override
 	public int haszon() {
-		return (int) (this.getBeszerzesiAr() * getHaszonkulcs());
+		return (int) (this.getBeszerzesiAr() * getHaszonkulcs()); // ugyanaz, mint a this.getBeszerzesiAr() - geteladasiar()
 	}
 
 	public int beolvasInt() {
