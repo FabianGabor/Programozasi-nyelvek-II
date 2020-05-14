@@ -12,8 +12,8 @@ import java.util.List;
 
 public class Menu {
     private static BufferedReader in;
-    private List<MenuItem> itemList;
-    private MenuItem exitItem;
+    private final List<MenuItem> itemList;
+    private final MenuItem exitItem;
     private String title;
 
     public Menu() {

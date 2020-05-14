@@ -1,6 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+@SuppressWarnings("LoopStatementThatDoesntLoop")
 public class Hardware implements HardwareInterface {
 	int cikkszam;
 	String megnevezes;
@@ -54,13 +55,22 @@ public class Hardware implements HardwareInterface {
 	}
 
 	@Override
-	public int geteladasiar() {
+	public int getEladasiAr() {
 		return (int) (this.getBeszerzesiAr() * (1 + getHaszonkulcs()));
 	}
 
 	@Override
-	public int haszon() {
+	public int haszon() { // ez sehol nincs használva, a feladatsor csak az implementálást kéri
 		return (int) (this.getBeszerzesiAr() * getHaszonkulcs()); // ugyanaz, mint a this.getBeszerzesiAr() - geteladasiar()
+	}
+
+	@Override
+	public String toString() {
+		return "Hardware{" +
+				"cikkszam=" + getCikkszam() +
+				", megnevezes='" + getMegnevezes() + '\'' +
+				", beszerzesiAr=" + getBeszerzesiAr() +
+				'}';
 	}
 
 	public int beolvasInt() {

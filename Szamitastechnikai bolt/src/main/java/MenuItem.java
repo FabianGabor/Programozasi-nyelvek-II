@@ -7,9 +7,9 @@
 import java.lang.reflect.Method;
 
 public class MenuItem {
-    private Object obj;
-    private String label;
-    private String target;
+    private final Object obj;
+    private final String label;
+    private final String target;
     private boolean isExitItem;
 
     public MenuItem(String label) { this(label, null, null); } // cannot invoke this MenuItem ie. dummy item

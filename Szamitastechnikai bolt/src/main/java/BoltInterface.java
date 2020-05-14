@@ -4,5 +4,4 @@ public interface BoltInterface {
 	boolean elad(int ezt);
 	Hardware kerescikkszam(int ezt);
 	int keresmegnevezes(String ezt); // szerintem hibas a keresmegnevezes(int ezt) (int) specifikacioban az int ezt parameter, mert nev szerint kene keresni
-	//int arukOsszBeszerzesiErteke(Bolt bolt);
 }

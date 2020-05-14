@@ -4,12 +4,10 @@ import java.util.Scanner;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+@SuppressWarnings("unused")
 public class Bolt extends Hardware implements BoltInterface {
 	SortedMap<Integer, Hardware> arukeszlet;
 	int forgotoke;
-
-	public Bolt() {
-	}
 
 	public Bolt(int forgotoke) {
 		this.forgotoke = forgotoke;
@@ -90,7 +88,7 @@ public class Bolt extends Hardware implements BoltInterface {
 								arukeszlet.put(cikkszam++, hdd);
 							}
 							catch (Exception e) {
-								System.out.println(e);
+								System.err.print("Error");
 							}
 							break;
 						}
@@ -123,7 +121,7 @@ public class Bolt extends Hardware implements BoltInterface {
 			} catch (InputMismatchException inputMismatchException) {
 				System.out.println("Lehetséges válasz: 1–" + Hardware.tipus.values().length);
 				scan.next();
-				continue;
+				//continue;
 			}
 
 		int cikkszam;
@@ -176,6 +174,7 @@ public class Bolt extends Hardware implements BoltInterface {
 		System.out.println( (talalat == null) ? "Nem létezik " + ezt + " megnevezésű termék." : talalat );
 	}
 
+	@SuppressWarnings("unused")
 	public void boltArukeszlete() {
 		System.out.println(this.toString());
 		System.out.println("Árucikkek mennyisége: " + this.arukeszlet.values().size());
@@ -199,8 +198,9 @@ public class Bolt extends Hardware implements BoltInterface {
 	@Override
 	public boolean elad(int ezt) {
 		if (this.arukeszlet.containsKey(ezt)) {
-			System.out.println("Eladási ár: " + this.arukeszlet.get(ezt).geteladasiar());
-			this.forgotoke += this.arukeszlet.get(ezt).geteladasiar();
+			System.out.println("Eladási ár: " + this.arukeszlet.get(ezt).getEladasiAr());
+			System.out.println("Haszonkulcs: " + Hardware.getHaszonkulcs() * 100 + '%');
+			this.forgotoke += this.arukeszlet.get(ezt).getEladasiAr();
 			this.arukeszlet.remove(ezt);
 			return true;
 		}
