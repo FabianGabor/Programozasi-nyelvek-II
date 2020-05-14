@@ -234,8 +234,8 @@ public class Bolt extends Hardware implements BoltInterface {
 	public String toString() {
 		StringBuilder str =
 				new StringBuilder("Bolt{" +
-						"\nforgotoke: " + forgotoke +
-						"\narukeszlet: ");
+						"\nForgótőke: " + forgotoke +
+						"\nÁrukészlet: ");
 
 		for (Integer i : arukeszlet.keySet() )
 		{
