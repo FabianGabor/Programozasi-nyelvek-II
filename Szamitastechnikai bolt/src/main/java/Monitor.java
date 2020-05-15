@@ -1,6 +1,8 @@
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Scanner;
 
-public class Monitor extends Hardware {
+public class Monitor extends Hardware implements NumberFormatInterface {
 	private int meret;
 	private int xfelbontas;
 	private int yfelbontas;
@@ -66,7 +68,7 @@ public class Monitor extends Hardware {
 		return "Monitor" +
 				"\n\tcikkszam:\t\t" + cikkszam +
 				"\n\tmegnevezes:\t\t" + megnevezes +
-				"\n\tbeszerzesiAr:\t" + beszerzesiAr +
+				"\n\tbeszerzesiAr:\t" + customFormat(beszerzesiAr) +
 				"\n\tmeret:\t\t\t" + meret +
 				"\n\txfelbontas:\t\t" + xfelbontas +
 				"\n\tyfelbontas:\t\t" + yfelbontas +
@@ -101,5 +103,15 @@ public class Monitor extends Hardware {
 		monitor.setLed( (scan.next().equals("i")) );
 
 		return monitor;
+	}
+
+	@Override
+	public String customFormat(double value) {
+		DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+		dfs.setDecimalSeparator(',');
+		dfs.setGroupingSeparator('.');
+		DecimalFormat df = new DecimalFormat("###,###.###", dfs);
+
+		return df.format(value);
 	}
 }

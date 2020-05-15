@@ -1,11 +1,14 @@
 import java.io.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 @SuppressWarnings("unused")
-public class Bolt extends Hardware implements BoltInterface {
+public class Bolt extends Hardware implements BoltInterface, NumberFormatInterface {
 	SortedMap<Integer, Hardware> arukeszlet;
 	int forgotoke;
 
@@ -178,8 +181,9 @@ public class Bolt extends Hardware implements BoltInterface {
 	public void boltArukeszlete() {
 		System.out.println(this.toString());
 		System.out.println("Árucikkek mennyisége: " + this.arukeszlet.values().size());
-		System.out.println("Forgótőke: " + this.forgotoke);
-		System.out.println("Áruk össz beszerzési értéke: " + arukOsszBeszerzesiErteke(this));
+		System.out.println("Forgótőke: " + customFormat(this.forgotoke)); // forgótőke úja, hogy látszodjon az árucikkek előtt és után is
+		System.out.println("Haszonkulcs: " + customFormat(haszonkulcs * 100) + "%");
+		System.out.println("Áruk össz beszerzési értéke: " + customFormat(arukOsszBeszerzesiErteke(this)));
 		System.out.println("Áruk cikkszámai: " + this.arukeszlet.keySet());
 	}
 
@@ -198,7 +202,7 @@ public class Bolt extends Hardware implements BoltInterface {
 	@Override
 	public boolean elad(int ezt) {
 		if (this.arukeszlet.containsKey(ezt)) {
-			System.out.println("Eladási ár: " + this.arukeszlet.get(ezt).getEladasiAr());
+			System.out.println("Eladási ár: " + customFormat(this.arukeszlet.get(ezt).getEladasiAr()));
 			System.out.println("Haszonkulcs: " + Hardware.getHaszonkulcs() * 100 + '%');
 			this.forgotoke += this.arukeszlet.get(ezt).getEladasiAr();
 			this.arukeszlet.remove(ezt);
@@ -233,8 +237,8 @@ public class Bolt extends Hardware implements BoltInterface {
 	@Override
 	public String toString() {
 		StringBuilder str =
-				new StringBuilder("Bolt{" +
-						"\nForgótőke: " + forgotoke +
+				new StringBuilder(
+						"\nForgótőke: " + customFormat(forgotoke) +
 						"\nÁrukészlet: ");
 
 		for (Integer i : arukeszlet.keySet() )
@@ -242,7 +246,6 @@ public class Bolt extends Hardware implements BoltInterface {
 			str.append("\n").append(arukeszlet.get(i).toString());
 		}
 
-		str.append("\n}");
 		return str.toString();
 	}
 
@@ -252,6 +255,16 @@ public class Bolt extends Hardware implements BoltInterface {
 		Hardware.setHaszonkulcs(beolvasDouble() / 100);
 	}
 
+
+	@Override
+	public String customFormat(double value) {
+		DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+		dfs.setDecimalSeparator(',');
+		dfs.setGroupingSeparator('.');
+		DecimalFormat df = new DecimalFormat("###,###.###", dfs);
+
+		return df.format(value);
+	}
 
 	public static void main(String[] args) {
 		Bolt bolt = new Bolt(1000000);

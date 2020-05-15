@@ -1,6 +1,8 @@
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Scanner;
 
-public class HDD extends Hardware {
+public class HDD extends Hardware implements NumberFormatInterface {
 	// "Winchester" is a code-name for an HDD introduced by IBM in 1973
 	int kapacitas;
 	int fordulatszam;
@@ -49,7 +51,7 @@ public class HDD extends Hardware {
 		return "HDD" +
 				"\n\tcikkszam:\t\t" + cikkszam +
 				"\n\tmegnevezes:\t\t" + megnevezes +
-				"\n\tbeszerzesiAr:\t" + beszerzesiAr +
+				"\n\tbeszerzesiAr:\t" + customFormat(beszerzesiAr) +
 				"\n\tkapacitas:\t\t" + kapacitas +
 				"\n\tfordulatszam:\t" + fordulatszam +
 				"\n\teleresiIdo:\t\t" + eleresiIdo +
@@ -76,5 +78,15 @@ public class HDD extends Hardware {
 		hdd.setEleresiIdo(beolvasDouble());
 
 		return hdd;
+	}
+
+	@Override
+	public String customFormat(double value) {
+		DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+		dfs.setDecimalSeparator(',');
+		dfs.setGroupingSeparator('.');
+		DecimalFormat df = new DecimalFormat("###,###.###", dfs);
+
+		return df.format(value);
 	}
 }
