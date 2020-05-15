@@ -1,3 +1,9 @@
+/*
+ * Fábián Gábor
+ * CXNU8T
+ * https://github.com/FabianGabor/Programozasi-nyelvek-II
+ */
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

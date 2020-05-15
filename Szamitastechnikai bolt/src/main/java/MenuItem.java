@@ -1,9 +1,3 @@
-/*
- * Fábián Gábor
- * CXNU8T
- * https://github.com/FabianGabor/Programozasi-nyelvek-II/tree/master/Fut%C3%B3verseny
- */
-
 import java.lang.reflect.Method;
 
 public class MenuItem {
