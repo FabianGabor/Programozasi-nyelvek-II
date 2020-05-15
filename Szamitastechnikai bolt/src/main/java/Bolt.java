@@ -108,7 +108,7 @@ public class Bolt extends Hardware implements BoltInterface, NumberFormatInterfa
 			this.setArukeszlet(arukeszlet);
 		}
 		catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.out.println(allomanynev + " nem található");
 		}
 	}
 
